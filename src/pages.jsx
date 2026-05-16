@@ -193,7 +193,7 @@ window.AboutPage = function AboutPage() {
         <div className="about-portrait" />
         <div className="about-bio">
           <p>
-            I'm a <strong>VFX &amp; Etc artist</strong> based in Sofia, Bulgaria —
+            I'm a <strong>VFX &amp; Etc artist</strong> based in Groningen, Netherlands —
             working between music, motorsport and brand. I direct, shoot, edit, color
             and sometimes sculpt entire worlds in 3D.
           </p>
@@ -261,7 +261,7 @@ window.AboutPage = function AboutPage() {
       </section>
 
       <footer className="footer">
-        <span>© 2026 P.Y.</span><span>About</span><span>Sofia / Worldwide</span>
+        <span>© 2026 P.Y.</span><span>About</span><span>Groningen / Worldwide</span>
       </footer>
       <ContactPopup />
     </div>
@@ -302,9 +302,9 @@ window.ContactPage = function ContactPage() {
 
         <div style={{ marginTop: 80, paddingTop: 40, borderTop: "1px solid var(--line)", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
           <div><div className="eyebrow" style={{ marginBottom: 8 }}>Booking</div><div>Q3 — Q4 / 2026</div></div>
-          <div><div className="eyebrow" style={{ marginBottom: 8 }}>Located</div><div>Sofia, BG</div></div>
+          <div><div className="eyebrow" style={{ marginBottom: 8 }}>Located</div><div>Groningen, NL</div></div>
           <div><div className="eyebrow" style={{ marginBottom: 8 }}>Travel</div><div>Worldwide</div></div>
-          <div><div className="eyebrow" style={{ marginBottom: 8 }}>Hours</div><div>UTC+2 / 09 — 19</div></div>
+          <div><div className="eyebrow" style={{ marginBottom: 8 }}>Hours</div><div>CET / 09 — 19</div></div>
         </div>
       </section>
 

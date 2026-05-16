@@ -145,16 +145,16 @@ window.Curtain = function Curtain({ trigger }) {
   );
 };
 
-// Live Sofia time chip + status badge
+// Live Groningen time chip + status badge
 window.HudBadges = function HudBadges() {
   const [time, setTime] = useState("");
   useEffect(() => {
     const tick = () => {
+      // Groningen is CET (UTC+1) / CEST (UTC+2 in summer)
       const d = new Date();
-      const h = String(d.getHours()).padStart(2, "0");
-      const m = String(d.getMinutes()).padStart(2, "0");
-      const s = String(d.getSeconds()).padStart(2, "0");
-      setTime(`${h}:${m}:${s} UTC+2 · Sofia`);
+      const nl = d.toLocaleString("en-GB", { timeZone: "Europe/Amsterdam", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false });
+      const offset = d.toLocaleString("en-GB", { timeZone: "Europe/Amsterdam", timeZoneName: "shortOffset" }).split("GMT")[1] || "+1";
+      setTime(`${nl} UTC${offset} · Groningen`);
     };
     tick();
     const id = setInterval(tick, 1000);
@@ -164,7 +164,7 @@ window.HudBadges = function HudBadges() {
     <>
       <div className="status-badge">
         <span className="pulse" />
-        <span>Available · Q3 / Q4 — 26</span>
+        <span>Open to work · 2026</span>
       </div>
       <div className="time-chip">{time}</div>
     </>

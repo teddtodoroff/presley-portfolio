@@ -17,7 +17,7 @@ window.HomeCathedral = function HomeCathedral({ goProject }) {
       <HomeContact />
       <footer className="footer">
         <span>© 2026 Presley Yordanov</span>
-        <span>Sofia / Worldwide</span>
+        <span>Groningen / Worldwide</span>
         <span>Last updated · 05.05.26</span>
       </footer>
       <ContactPopup />
@@ -32,7 +32,7 @@ window.HomeHero = function HomeHero({ goProject }) {
   return (
     <section className="home-hero">
       <div className="eyebrow-row">
-        <span><span className="live-dot" />Sofia, BG — available for select work, Q3 — Q4 / 2026</span>
+        <span><span className="live-dot" />Groningen, NL — available for select work, Q3 — Q4 / 2026</span>
         <span className="ix">Index № 001 · VFX &amp; Etc</span>
       </div>
 
@@ -42,7 +42,7 @@ window.HomeHero = function HomeHero({ goProject }) {
         </h1>
         <p className="title-sub">
           Presley Yordanov — building cinematic, sculptural, slightly haunted
-          imagery for music, motorsport &amp; brands. Sofia &amp; worldwide.
+          imagery for music, motorsport &amp; brands. Groningen &amp; worldwide.
         </p>
       </div>
 
@@ -312,7 +312,7 @@ window.HomeAbout = function HomeAbout() {
       <div className="bio">
         <h2>Hey, I'm <em>Presley.</em></h2>
         <p>
-          A <strong>VFX &amp; Etc artist</strong> based in Sofia, Bulgaria — working
+          A <strong>VFX &amp; Etc artist</strong> based in Groningen, Netherlands — working
           between music, motorsport and brand. I direct, shoot, edit, color and
           sometimes sculpt entire worlds in 3D.
         </p>
@@ -324,7 +324,7 @@ window.HomeAbout = function HomeAbout() {
         <dl className="meta">
           <div>
             <dt>Based</dt>
-            <dd>Sofia, BG</dd>
+            <dd>Groningen, NL</dd>
           </div>
           <div>
             <dt>Booking</dt>
