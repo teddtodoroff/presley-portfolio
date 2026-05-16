@@ -93,32 +93,83 @@ window.CarouselSection = function CarouselSection({ goProject }) {
     }
   ];
   const [idx, setIdx] = useState(0);
+  const [animDir, setAnimDir] = useState("next");
+  const [animating, setAnimating] = useState(false);
+  const autoRef = useRef(null);
   const total = slides.length;
   const current = slides[idx];
-  const prev = () => setIdx((idx - 1 + total) % total);
-  const next = () => setIdx((idx + 1) % total);
+
+  const go = (newIdx, dir) => {
+    if (animating) return;
+    setAnimDir(dir);
+    setAnimating(true);
+    setTimeout(() => {
+      setIdx(newIdx);
+      setTimeout(() => setAnimating(false), 50);
+    }, 320);
+  };
+  const prev = () => go((idx - 1 + total) % total, "prev");
+  const next = () => go((idx + 1) % total, "next");
+
+  // Auto-play every 5s, pauses on hover
+  useEffect(() => {
+    autoRef.current = setInterval(() => {
+      go(-1, "next"); // placeholder — handled below
+    }, 5000);
+    return () => clearInterval(autoRef.current);
+  }, []);
+  // Fix: auto-play uses latest idx
+  useEffect(() => {
+    clearInterval(autoRef.current);
+    autoRef.current = setInterval(() => {
+      setAnimDir("next");
+      setAnimating(true);
+      setTimeout(() => {
+        setIdx(prev => (prev + 1) % total);
+        setTimeout(() => setAnimating(false), 50);
+      }, 320);
+    }, 5000);
+    return () => clearInterval(autoRef.current);
+  }, [idx, total]);
+
+  const pauseAuto = () => clearInterval(autoRef.current);
+  const resumeAuto = () => {
+    clearInterval(autoRef.current);
+    autoRef.current = setInterval(() => {
+      setAnimDir("next");
+      setAnimating(true);
+      setTimeout(() => {
+        setIdx(prev => (prev + 1) % total);
+        setTimeout(() => setAnimating(false), 50);
+      }, 320);
+    }, 5000);
+  };
 
   return (
     <section className="carousel-section">
-      <div className="carousel-head">
-        <h2>Selected<br/><em>Work</em></h2>
-        <div className="meta">
-          {String(idx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}<br/>
-          Featured projects
+      <Reveal>
+        <div className="carousel-head">
+          <h2>Selected<br/><em>Work</em></h2>
+          <div className="meta">
+            {String(idx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}<br/>
+            Featured projects
+          </div>
         </div>
-      </div>
-      <div className="carousel">
+      </Reveal>
+      <div className="carousel" onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}>
         <div className="carousel-stage">
           <div className="carousel-side" onClick={prev} aria-label="Previous">
             <span className="arrow">‹</span>
           </div>
-          <div className="carousel-slide" style={{ background: current.bg }}
+          <div className={"carousel-slide" + (animating ? " anim-out-" + animDir : " anim-in")}
+               style={{ background: current.bg }}
                onClick={() => goProject && goProject(current.title)}>
             <div className="scrim" />
             <div className="label">
               <span className="kicker">{current.kicker}</span>
               <h3>{current.title.replace(current.em, "").trim()} <em>{current.em}</em></h3>
               <span className="role">{current.role}</span>
+              <p className="slide-desc">{current.desc}</p>
             </div>
             <span className="checkout" onClick={(e) => { e.stopPropagation(); goProject && goProject(current.title); }}>
               Check out <span className="arrow">→</span>
@@ -131,8 +182,13 @@ window.CarouselSection = function CarouselSection({ goProject }) {
         <div className="carousel-dots">
           {slides.map((_, i) => (
             <span key={i} className={"dot" + (i === idx ? " active" : "")}
-                  onClick={() => setIdx(i)} />
+                  onClick={() => go(i, i > idx ? "next" : "prev")} />
           ))}
+        </div>
+        <div className="carousel-counter">
+          <span className="carousel-counter-current">{String(idx + 1).padStart(2, "0")}</span>
+          <span className="carousel-counter-sep">/</span>
+          <span className="carousel-counter-total">{String(total).padStart(2, "0")}</span>
         </div>
       </div>
     </section>
@@ -144,22 +200,23 @@ window.CarouselSection = function CarouselSection({ goProject }) {
 // ============================================
 window.BentoGallery = function BentoGallery({ goProject }) {
   const tiles = [
-    { kicker: "Platform", title: "Reimagining Discord as a limitless home for every community", icon: "→", c: "c7", r: "r2", k: "discord" },
-    { kicker: "Consumer Electronics", title: "Positioning Ray-Ban Meta as the future of wearable AI", icon: "M", c: "c5", k: "rayban" },
-    { kicker: "Media — Music", title: "Discover Weekly — a decade of personalised discovery", icon: "S", c: "c5", k: "spotify" },
-    { kicker: "Media", title: "Filmhub — distribution for storytellers", icon: "▷", c: "c4", k: "filmhub" },
-    { kicker: "Marketplace", title: "Shaping circular tech with Back Market", icon: "«", c: "c3", k: "backmkt" },
-    { kicker: "Platform", title: "Sound.xyz — a reimagined music identity", icon: "S", c: "c4", k: "sound" },
-    { kicker: "Editorial", title: "Thirty editorial brands for niche music cultures", icon: "S", c: "c4", k: "thirty" },
-    { kicker: "Personal", title: "Mask of Utopia — sculptural 3D study", icon: "Ø", c: "c4", k: "mask" }
+    { kicker: "Motorsport", title: "Golden Hour — a tuned Supra at the last light of day", icon: "→", c: "c7", r: "r2", k: "golden" },
+    { kicker: "Personal", title: "Mask of Utopia — sculptural 3D study in carved stone", icon: "Ø", c: "c5", k: "mask" },
+    { kicker: "Music", title: "Stage Visuals — twelve live-render cues for Rite", icon: "♪", c: "c5", k: "stage" },
+    { kicker: "Brand", title: "Ethereal Designs — identity film and product CGI", icon: "◈", c: "c7", k: "ethereal" },
+    { kicker: "R&D", title: "Chronos 01 — time-sculpture experiments", icon: "◷", c: "c4", k: "chronos" },
+    { kicker: "Personal", title: "Neural Echoes — generative landscapes", icon: "∿", c: "c4", k: "neural" },
+    { kicker: "Direction", title: "Datmaxp.jet — automotive culture series", icon: "▶", c: "c4", k: "datmaxp" }
   ];
 
   return (
     <section className="bento-section">
-      <div className="bento-head">
-        <h2><em>Gallery</em></h2>
-        <div className="meta">{String(tiles.length).padStart(2, "0")} projects<br/>Scroll →</div>
-      </div>
+      <Reveal>
+        <div className="bento-head">
+          <h2><em>Gallery</em></h2>
+          <div className="meta">{String(tiles.length).padStart(2, "0")} projects<br/>Scroll →</div>
+        </div>
+      </Reveal>
       <div className="bento">
         {tiles.map((t, i) => (
           <Reveal key={t.k} className={"tile " + (t.c || "c4") + " " + (t.r || "")} delay={i * 60}>

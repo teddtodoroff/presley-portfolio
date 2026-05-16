@@ -101,51 +101,67 @@ window.ProjectDetail = function ProjectDetail({ title = "Golden Hour", back }) {
 // ============================================
 window.WorkIndex = function WorkIndex({ goProject }) {
   const projects = [
-    { num: "01", t: "Golden Hour", r: "Color · Edit · Direction", y: "2025", tag: "Motorsport" },
-    { num: "02", t: "Mask of Utopia", r: "3D · Cinematic", y: "2024", tag: "Personal" },
-    { num: "03", t: "Stage Visuals — Rite", r: "Direction · Live", y: "2025", tag: "Music" },
-    { num: "04", t: "Ethereal Designs", r: "Brand · CGI", y: "2024", tag: "Brand" },
-    { num: "05", t: "Chronos 01", r: "Sculpture · R&D", y: "2023", tag: "Personal" },
-    { num: "06", t: "Neural Echoes", r: "Generative", y: "2024", tag: "Personal" }
+    { num: "01", t: "Golden Hour", r: "Color · Edit · Direction", y: "2025", tag: "Motorsport", bg: "linear-gradient(135deg, #c87a4a, #6a2820)" },
+    { num: "02", t: "Mask of Utopia", r: "3D · Cinematic", y: "2024", tag: "Personal", bg: "linear-gradient(135deg, #3a2050, #0a0414)" },
+    { num: "03", t: "Stage Visuals — Rite", r: "Direction · Live", y: "2025", tag: "Music", bg: "linear-gradient(135deg, #5a4080, #1a0e2e)" },
+    { num: "04", t: "Ethereal Designs", r: "Brand · CGI", y: "2024", tag: "Brand", bg: "linear-gradient(135deg, #b8a890, #4a3a2a)" },
+    { num: "05", t: "Chronos 01", r: "Sculpture · R&D", y: "2023", tag: "Personal", bg: "linear-gradient(135deg, #1a1525, #050208)" },
+    { num: "06", t: "Neural Echoes", r: "Generative", y: "2024", tag: "Personal", bg: "linear-gradient(135deg, #2a3a50, #0a1420)" }
   ];
+  const [hovered, setHovered] = useState(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const containerRef = useRef(null);
+
+  const onRowMove = (e, i) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    setHovered(i);
+  };
+
   return (
     <div className="page active">
       <CathedralBg intensity={0.4} />
 
       <section className="container" style={{ paddingTop: 160, paddingBottom: 60 }}>
-        <div className="eyebrow" style={{ marginBottom: 24 }}>Work · Index № 001</div>
-        <h1 className="serif" style={{ fontSize: "clamp(72px, 11vw, 200px)", lineHeight: 0.92 }}>
-          Things <em>I've</em><br/>made.
-        </h1>
-        <p className="lede" style={{ marginTop: 30, maxWidth: 600 }}>
-          A working archive — VFX, direction, color and a few personal experiments in
-          sculpture and stage design.
-        </p>
+        <Reveal>
+          <div className="eyebrow" style={{ marginBottom: 24 }}>Work · Index № 001</div>
+          <h1 className="serif" style={{ fontSize: "clamp(72px, 11vw, 200px)", lineHeight: 0.92 }}>
+            Things <em>I've</em><br/>made.
+          </h1>
+          <p className="lede" style={{ marginTop: 30, maxWidth: 600 }}>
+            A working archive — VFX, direction, color and a few personal experiments in
+            sculpture and stage design.
+          </p>
+        </Reveal>
       </section>
 
-      <section className="container">
+      <section className="container" ref={containerRef} style={{ position: "relative" }}>
+        {/* Floating preview thumbnail */}
+        {hovered !== null && (
+          <div className="work-preview-float" style={{
+            left: mousePos.x + 20,
+            top: mousePos.y - 80,
+            background: projects[hovered].bg
+          }}>
+            <span className="work-preview-label">{projects[hovered].t}</span>
+          </div>
+        )}
         <div style={{ borderTop: "1px solid var(--line)" }}>
           {projects.map((p, i) => (
-            <a key={p.num} href="#"
-               onClick={(e) => { e.preventDefault(); goProject && goProject(p.t); }}
-               className="work-row"
-               style={{
-                 display: "grid",
-                 gridTemplateColumns: "60px 1fr auto auto auto",
-                 gap: 32,
-                 alignItems: "center",
-                 padding: "28px 0",
-                 borderBottom: "1px solid var(--line)",
-                 transition: "padding 0.3s, color 0.3s"
-               }}
-               onMouseEnter={(e) => e.currentTarget.style.paddingLeft = "20px"}
-               onMouseLeave={(e) => e.currentTarget.style.paddingLeft = "0"}>
-              <span style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: ".18em", color: "var(--ink-mute)" }}>№ {p.num}</span>
-              <span className="serif" style={{ fontSize: "clamp(28px, 3vw, 44px)" }}>{p.t}</span>
-              <span style={{ fontFamily: "var(--mono)", fontSize: 11, letterSpacing: ".16em", textTransform: "uppercase", color: "var(--ink-dim)" }}>{p.r}</span>
-              <span className="chip">{p.tag}</span>
-              <span style={{ fontFamily: "var(--mono)", fontSize: 11, color: "var(--ink-mute)" }}>{p.y} →</span>
-            </a>
+            <Reveal key={p.num} delay={i * 80}>
+              <a href="#"
+                 onClick={(e) => { e.preventDefault(); goProject && goProject(p.t); }}
+                 className="work-row"
+                 onMouseMove={(e) => onRowMove(e, i)}
+                 onMouseLeave={() => setHovered(null)}>
+                <span className="work-row-num">№ {p.num}</span>
+                <span className="work-row-title serif">{p.t}</span>
+                <span className="work-row-role">{p.r}</span>
+                <span className="chip">{p.tag}</span>
+                <span className="work-row-year">{p.y} →</span>
+              </a>
+            </Reveal>
           ))}
         </div>
       </section>
