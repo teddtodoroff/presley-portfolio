@@ -55,7 +55,7 @@ window.HomeHero = function HomeHero({ goProject }) {
 };
 
 // ============================================
-// CAROUSEL — peach side rails, slide with CHECK OUT
+// CAROUSEL — full-width crossfade, modern controls
 // ============================================
 window.CarouselSection = function CarouselSection({ goProject }) {
   const slides = [
@@ -93,102 +93,108 @@ window.CarouselSection = function CarouselSection({ goProject }) {
     }
   ];
   const [idx, setIdx] = useState(0);
-  const [animDir, setAnimDir] = useState("next");
-  const [animating, setAnimating] = useState(false);
+  const [prevIdx, setPrevIdx] = useState(null);
   const autoRef = useRef(null);
   const total = slides.length;
-  const current = slides[idx];
 
-  const go = (newIdx, dir) => {
-    if (animating) return;
-    setAnimDir(dir);
-    setAnimating(true);
-    setTimeout(() => {
-      setIdx(newIdx);
-      setTimeout(() => setAnimating(false), 50);
-    }, 320);
+  const goTo = (newIdx) => {
+    if (newIdx === idx) return;
+    setPrevIdx(idx);
+    setIdx(newIdx);
+    setTimeout(() => setPrevIdx(null), 900);
   };
-  const prev = () => go((idx - 1 + total) % total, "prev");
-  const next = () => go((idx + 1) % total, "next");
+  const prev = () => goTo((idx - 1 + total) % total);
+  const next = () => goTo((idx + 1) % total);
 
-  // Auto-play every 5s, pauses on hover
-  useEffect(() => {
-    autoRef.current = setInterval(() => {
-      go(-1, "next"); // placeholder — handled below
-    }, 5000);
-    return () => clearInterval(autoRef.current);
-  }, []);
-  // Fix: auto-play uses latest idx
-  useEffect(() => {
+  // Auto-play every 7s, pauses on hover
+  const startAuto = () => {
     clearInterval(autoRef.current);
     autoRef.current = setInterval(() => {
-      setAnimDir("next");
-      setAnimating(true);
-      setTimeout(() => {
-        setIdx(prev => (prev + 1) % total);
-        setTimeout(() => setAnimating(false), 50);
-      }, 320);
-    }, 5000);
-    return () => clearInterval(autoRef.current);
-  }, [idx, total]);
-
-  const pauseAuto = () => clearInterval(autoRef.current);
-  const resumeAuto = () => {
-    clearInterval(autoRef.current);
-    autoRef.current = setInterval(() => {
-      setAnimDir("next");
-      setAnimating(true);
-      setTimeout(() => {
-        setIdx(prev => (prev + 1) % total);
-        setTimeout(() => setAnimating(false), 50);
-      }, 320);
-    }, 5000);
+      setPrevIdx(prev => {
+        // Can't call goTo here, so inline the logic
+        return null; // handled via setIdx below
+      });
+      setIdx(prev => {
+        setPrevIdx(prev);
+        const n = (prev + 1) % total;
+        setTimeout(() => setPrevIdx(null), 900);
+        return n;
+      });
+    }, 7000);
   };
+  const stopAuto = () => clearInterval(autoRef.current);
+
+  useEffect(() => {
+    startAuto();
+    return () => clearInterval(autoRef.current);
+  }, [total]);
+
+  // Progress bar for current slide
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    setProgress(0);
+    const start = Date.now();
+    const dur = 7000;
+    let raf;
+    const tick = () => {
+      const elapsed = Date.now() - start;
+      setProgress(Math.min(elapsed / dur, 1));
+      if (elapsed < dur) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [idx]);
 
   return (
     <section className="carousel-section">
       <Reveal>
         <div className="carousel-head">
           <h2>Selected<br/><em>Work</em></h2>
-          <div className="meta">
-            {String(idx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}<br/>
-            Featured projects
-          </div>
         </div>
       </Reveal>
-      <div className="carousel" onMouseEnter={pauseAuto} onMouseLeave={resumeAuto}>
-        <div className="carousel-stage">
-          <div className="carousel-side" onClick={prev} aria-label="Previous">
-            <span className="arrow">‹</span>
-          </div>
-          <div className={"carousel-slide" + (animating ? " anim-out-" + animDir : " anim-in")}
-               style={{ background: current.bg }}
-               onClick={() => goProject && goProject(current.title)}>
-            <div className="scrim" />
-            <div className="label">
-              <span className="kicker">{current.kicker}</span>
-              <h3>{current.title.replace(current.em, "").trim()} <em>{current.em}</em></h3>
-              <span className="role">{current.role}</span>
-              <p className="slide-desc">{current.desc}</p>
+      <div className="carousel-fw" onMouseEnter={stopAuto} onMouseLeave={startAuto}>
+        {/* All slides stacked, crossfade via opacity */}
+        <div className="carousel-fw-stack">
+          {slides.map((s, i) => (
+            <div key={i}
+                 className={"carousel-fw-slide" + (i === idx ? " active" : "") + (i === prevIdx ? " leaving" : "")}
+                 style={{ background: s.bg }}
+                 onClick={() => goProject && goProject(s.title)}>
+              <div className="carousel-fw-scrim" />
+              <div className="carousel-fw-content">
+                <span className="carousel-fw-kicker">{s.kicker}</span>
+                <h3 className="carousel-fw-title">{s.title.replace(s.em, "").trim()} <em>{s.em}</em></h3>
+                <span className="carousel-fw-role">{s.role}</span>
+                <p className="carousel-fw-desc">{s.desc}</p>
+              </div>
+              <span className="carousel-fw-cta"
+                    onClick={(e) => { e.stopPropagation(); goProject && goProject(s.title); }}>
+                View project <span>→</span>
+              </span>
             </div>
-            <span className="checkout" onClick={(e) => { e.stopPropagation(); goProject && goProject(current.title); }}>
-              Check out <span className="arrow">→</span>
-            </span>
-          </div>
-          <div className="carousel-side right" onClick={next} aria-label="Next">
-            <span className="arrow">›</span>
-          </div>
-        </div>
-        <div className="carousel-dots">
-          {slides.map((_, i) => (
-            <span key={i} className={"dot" + (i === idx ? " active" : "")}
-                  onClick={() => go(i, i > idx ? "next" : "prev")} />
           ))}
         </div>
-        <div className="carousel-counter">
-          <span className="carousel-counter-current">{String(idx + 1).padStart(2, "0")}</span>
-          <span className="carousel-counter-sep">/</span>
-          <span className="carousel-counter-total">{String(total).padStart(2, "0")}</span>
+
+        {/* Controls — bottom bar */}
+        <div className="carousel-fw-controls">
+          <div className="carousel-fw-nav">
+            <button className="carousel-fw-btn" onClick={prev} aria-label="Previous">←</button>
+            <button className="carousel-fw-btn" onClick={next} aria-label="Next">→</button>
+          </div>
+          <div className="carousel-fw-indicators">
+            {slides.map((s, i) => (
+              <button key={i}
+                      className={"carousel-fw-ind" + (i === idx ? " active" : "")}
+                      onClick={() => goTo(i)}>
+                <span className="carousel-fw-ind-label">{String(i + 1).padStart(2, "0")}</span>
+                <span className="carousel-fw-ind-title">{s.title}</span>
+                {i === idx && <span className="carousel-fw-ind-bar" style={{ transform: `scaleX(${progress})` }} />}
+              </button>
+            ))}
+          </div>
+          <div className="carousel-fw-count">
+            {String(idx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+          </div>
         </div>
       </div>
     </section>

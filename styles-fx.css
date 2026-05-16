@@ -300,59 +300,7 @@
   animation: pulse 2.4s infinite;
 }
 
-/* ============================================
-   CAROUSEL SLIDE TRANSITIONS (2026-05 update)
-   ============================================ */
-.carousel-slide {
-  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.carousel-slide.anim-in {
-  opacity: 1;
-  transform: scale(1) translateX(0);
-}
-.carousel-slide.anim-out-next {
-  opacity: 0;
-  transform: scale(0.95) translateX(-30px);
-}
-.carousel-slide.anim-out-prev {
-  opacity: 0;
-  transform: scale(0.95) translateX(30px);
-}
-.carousel-slide .slide-desc {
-  font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--ink-dim);
-  margin-top: 12px;
-  max-width: 360px;
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.5s 0.2s, transform 0.5s 0.2s;
-}
-.carousel-slide.anim-in .slide-desc,
-.carousel-slide:not(.anim-out-next):not(.anim-out-prev) .slide-desc {
-  opacity: 1;
-  transform: translateY(0);
-}
-/* Counter under carousel */
-.carousel-counter {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  gap: 6px;
-  margin-top: 18px;
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.22em;
-  color: var(--ink-mute);
-}
-.carousel-counter-current {
-  font-size: 24px;
-  font-family: var(--serif);
-  color: var(--ink);
-  letter-spacing: 0;
-  transition: opacity 0.3s;
-}
+/* Old carousel transitions removed — now handled by styles-redesign.css */
 
 /* ============================================
    WORK INDEX ROW STYLES (2026-05 update)
