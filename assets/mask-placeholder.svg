@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 560" fill="none">
+  <defs>
+    
+    <linearGradient id="silhGrad" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#e6d5b8" stop-opacity="0.95"></stop>
+      <stop offset="35%" stop-color="#9c7a52" stop-opacity="0.9"></stop>
+      <stop offset="70%" stop-color="#3a2540" stop-opacity="0.95"></stop>
+      <stop offset="100%" stop-color="#0c0612" stop-opacity="1"></stop>
+    </linearGradient>
+
+    
+    <linearGradient id="silhRim" x1="0" y1="0" x2="1" y2="0.6">
+      <stop offset="0%" stop-color="#fff3d6" stop-opacity="0.45"></stop>
+      <stop offset="35%" stop-color="#fff3d6" stop-opacity="0"></stop>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.6"></stop>
+    </linearGradient>
+
+    
+    <radialGradient id="silhBase" cx="0.5" cy="1" r="0.7">
+      <stop offset="0%" stop-color="#000" stop-opacity="0.55"></stop>
+      <stop offset="100%" stop-color="#000" stop-opacity="0"></stop>
+    </radialGradient>
+
+    
+    <radialGradient id="silhHalo" cx="0.5" cy="0.42" r="0.55">
+      <stop offset="0%" stop-color="#7a4fcc" stop-opacity="0.55"></stop>
+      <stop offset="55%" stop-color="#7a4fcc" stop-opacity="0.08"></stop>
+      <stop offset="100%" stop-color="#7a4fcc" stop-opacity="0"></stop>
+    </radialGradient>
+
+    
+    <filter id="silhGrain" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="2" seed="7"></feTurbulence>
+      <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0   0 0 0 0.18 0"></feColorMatrix>
+      <feComposite in2="SourceGraphic" operator="in"></feComposite>
+    </filter>
+
+    
+    <clipPath id="silhClip">
+      <path d="&#xA;        M 200 40&#xA;        C 138 44 96 102 90 188&#xA;        C 86 254 96 320 122 388&#xA;        C 142 442 168 482 200 510&#xA;        C 232 482 258 442 278 388&#xA;        C 304 320 314 254 310 188&#xA;        C 304 102 262 44 200 40 Z"></path>
+    </clipPath>
+  </defs>
+
+  
+  <rect x="0" y="0" width="400" height="560" fill="url(#silhHalo)"></rect>
+
+  
+  <g clip-path="url(#silhClip)">
+    <rect x="0" y="0" width="400" height="560" fill="url(#silhGrad)"></rect>
+    <rect x="0" y="0" width="400" height="560" fill="url(#silhRim)" opacity="0.7"></rect>
+    <rect x="0" y="0" width="400" height="560" fill="url(#silhBase)"></rect>
+    
+    <rect x="0" y="0" width="400" height="560" fill="#fff" filter="url(#silhGrain)" opacity="0.5"></rect>
+  </g>
+
+  
+  <path d="&#xA;    M 200 40&#xA;    C 138 44 96 102 90 188&#xA;    C 86 254 96 320 122 388&#xA;    C 142 442 168 482 200 510&#xA;    C 232 482 258 442 278 388&#xA;    C 304 320 314 254 310 188&#xA;    C 304 102 262 44 200 40 Z" fill="none" stroke="#2a1830" stroke-width="1" opacity="0.7"></path>
+</svg>

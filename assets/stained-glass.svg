@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 400" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <linearGradient id="glassGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b388ff" stop-opacity="0.95"></stop>
+      <stop offset="55%" stop-color="#7a4fcc" stop-opacity="0.85"></stop>
+      <stop offset="100%" stop-color="#3a1d6b" stop-opacity="0.6"></stop>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#dabbff" stop-opacity="0.9"></stop>
+      <stop offset="100%" stop-color="#5a2da0" stop-opacity="0"></stop>
+    </radialGradient>
+    <mask id="archMask">
+      <rect width="200" height="400" fill="black"></rect>
+      <path d="M 100 8 C 50 8 25 50 25 110 L 25 400 L 175 400 L 175 110 C 175 50 150 8 100 8 Z" fill="white"></path>
+    </mask>
+  </defs>
+
+  
+  <g mask="url(#archMask)">
+    <rect width="200" height="400" fill="url(#glassGrad)"></rect>
+    <ellipse cx="100" cy="160" rx="130" ry="160" fill="url(#glow)"></ellipse>
+  </g>
+
+  
+  <g fill="#0a0414">
+    
+    <path d="M 0 0 L 200 0 L 200 400 L 175 400 L 175 110 C 175 55 150 15 100 15 C 50 15 25 55 25 110 L 25 400 L 0 400 Z"></path>
+
+    
+    <rect x="97" y="60" width="6" height="340"></rect>
+    
+    <rect x="25" y="200" width="150" height="5"></rect>
+    <rect x="25" y="300" width="150" height="5"></rect>
+
+    
+    <circle cx="100" cy="65" r="22" fill="#0a0414"></circle>
+    <circle cx="100" cy="65" r="16" fill="none" stroke="#0a0414" stroke-width="0"></circle>
+
+    
+    <path d="M 55 110 Q 70 140 60 195 Q 45 150 55 110 Z"></path>
+    <path d="M 145 110 Q 130 140 140 195 Q 155 150 145 110 Z"></path>
+    <path d="M 78 130 Q 88 160 80 195 Q 70 165 78 130 Z"></path>
+    <path d="M 122 130 Q 112 160 120 195 Q 130 165 122 130 Z"></path>
+
+    
+    <path d="M 50 215 Q 65 245 55 295 Q 38 255 50 215 Z"></path>
+    <path d="M 150 215 Q 135 245 145 295 Q 162 255 150 215 Z"></path>
+    <path d="M 80 215 Q 90 245 82 295 Q 70 255 80 215 Z"></path>
+    <path d="M 120 215 Q 110 245 118 295 Q 130 255 120 215 Z"></path>
+
+    
+    <path d="M 30 400 L 30 340 Q 30 315 55 315 Q 80 315 80 340 L 80 400 Z"></path>
+    <path d="M 85 400 L 85 340 Q 85 315 100 315 Q 115 315 115 340 L 115 400 Z"></path>
+    <path d="M 120 400 L 120 340 Q 120 315 145 315 Q 170 315 170 340 L 170 400 Z"></path>
+  </g>
+
+  
+  <g>
+    <path d="M 36 400 L 36 342 Q 36 320 55 320 Q 74 320 74 342 L 74 400 Z" fill="url(#glassGrad)" opacity="0.9"></path>
+    <path d="M 90 400 L 90 342 Q 90 320 100 320 Q 110 320 110 342 L 110 400 Z" fill="url(#glassGrad)" opacity="0.9"></path>
+    <path d="M 126 400 L 126 342 Q 126 320 145 320 Q 164 320 164 342 L 164 400 Z" fill="url(#glassGrad)" opacity="0.9"></path>
+  </g>
+
+  
+  <g transform="translate(100 65)">
+    <circle r="14" fill="url(#glassGrad)"></circle>
+    <path d="M 0 -14 L 4 -4 L 14 0 L 4 4 L 0 14 L -4 4 L -14 0 L -4 -4 Z" fill="#0a0414"></path>
+  </g>
+</svg>

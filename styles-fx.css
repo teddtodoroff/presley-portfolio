@@ -1,0 +1,301 @@
+/* ============================================
+   Interactive layer — cursor, magnetics, page transitions
+   ============================================ */
+
+/* Hide native cursor on desktop */
+@media (hover: hover) {
+  body, a, button, .btn, .proj-card, .marquee-tile { cursor: none; }
+}
+
+/* Custom cursor */
+.cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--violet-300);
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s ease, height 0.25s ease, background 0.25s ease;
+  box-shadow: 0 0 30px rgba(179, 136, 255, 0.6);
+}
+.cursor-ring {
+  position: fixed;
+  top: 0; left: 0;
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(184, 168, 212, 0.5);
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, border-color 0.3s, opacity 0.3s;
+}
+.cursor.hover-link { width: 6px; height: 6px; background: var(--violet-100); }
+.cursor-ring.hover-link { width: 60px; height: 60px; border-color: var(--violet-300); }
+.cursor.hover-card { width: 0; height: 0; }
+.cursor-ring.hover-card {
+  width: 110px; height: 110px;
+  background: rgba(122, 79, 204, 0.15);
+  border-color: var(--violet-300);
+  backdrop-filter: blur(2px);
+}
+.cursor-label {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 9997;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.cursor-label.show { opacity: 1; }
+@media (hover: none) {
+  .cursor, .cursor-ring, .cursor-label { display: none; }
+}
+
+/* Page transition: iris wipe — circular reveal */
+.iris {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  pointer-events: none;
+  --iris-r: 0%;
+  --iris-x: 50%;
+  --iris-y: 50%;
+}
+/* full-screen dark fill, masked by an inverted radial gradient.
+   r=0 → invisible. r=180% → covers whole screen. */
+.iris-fill {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 30%, rgba(60, 30, 90, 0.55), transparent 70%),
+    #07030f;
+  -webkit-mask: radial-gradient(circle at var(--iris-x) var(--iris-y),
+                                transparent calc(var(--iris-r) - 1%),
+                                #000 var(--iris-r));
+          mask: radial-gradient(circle at var(--iris-x) var(--iris-y),
+                                transparent calc(var(--iris-r) - 1%),
+                                #000 var(--iris-r));
+  transition: --iris-r 420ms cubic-bezier(0.65, 0, 0.35, 1);
+}
+/* warm rim around the closing iris — picks up the brand amber/violet */
+.iris-rim {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at var(--iris-x) var(--iris-y),
+      transparent calc(var(--iris-r) - 3%),
+      rgba(255, 200, 140, 0.35) calc(var(--iris-r) - 1.5%),
+      rgba(154, 108, 255, 0.25) calc(var(--iris-r) - 0.5%),
+      transparent calc(var(--iris-r) + 2%));
+  mix-blend-mode: screen;
+  transition: background 420ms cubic-bezier(0.65, 0, 0.35, 1);
+  opacity: 0.9;
+}
+.iris-grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence baseFrequency='1.4' numOctaves='2' seed='5'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.18 0'/></filter><rect width='180' height='180' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+/* CSS @property registration so --iris-r animates as a length */
+@property --iris-r {
+  syntax: "<percentage>";
+  initial-value: 0%;
+  inherits: false;
+}
+.iris.close { --iris-r: 180%; }
+.iris.close .iris-grain { opacity: 0.8; }
+.iris.open  { --iris-r: 0%; }
+.iris.open  .iris-grain { opacity: 0; transition-delay: 0; }
+
+/* Fallback for browsers without @property — use opacity instead of mask animation */
+@supports not (background: paint(something)) {
+  .iris-fill {
+    -webkit-mask: none;
+            mask: none;
+    opacity: 0;
+    transition: opacity 360ms ease;
+  }
+  .iris.close .iris-fill { opacity: 1; }
+  .iris.open  .iris-fill { opacity: 0; }
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  bottom: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--violet-300), var(--violet-100));
+  z-index: 90;
+  width: 0%;
+  transition: width 0.1s linear;
+  box-shadow: 0 0 12px var(--violet-300);
+}
+
+/* HUD top right — clock + status */
+.hud {
+  position: fixed;
+  top: 22px;
+  right: 40px;
+  z-index: 101;
+  display: none; /* hidden behind nav, leave for tweaks */
+}
+
+/* Magnetic / interactive marquee tiles — animated placeholder content */
+.marquee-tile .placeholder {
+  background-size: 200% 200%;
+  animation: shimmer 8s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%, 100% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+}
+.marquee-tile {
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.3s;
+}
+.marquee-tile:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--violet-300);
+  z-index: 5;
+}
+.marquee-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(179, 136, 255, 0.4), transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+  pointer-events: none;
+}
+.marquee-tile:hover::before { opacity: 1; }
+
+/* Project card spotlight */
+.proj-card { transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.4s; }
+.proj-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(179, 136, 255, 0.35), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 1;
+  pointer-events: none;
+}
+.proj-card:hover::before { opacity: 1; }
+.proj-card:hover { transform: translateY(-6px); }
+
+/* Cathedral background parallax — moves slightly with cursor */
+.cathedral-vitrail, .cathedral-shafts {
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: transform;
+}
+
+/* Sound + status badge bottom-left */
+.status-badge {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: rgba(20, 10, 36, 0.7);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  backdrop-filter: blur(10px);
+}
+.status-badge .pulse {
+  width: 6px; height: 6px;
+  background: var(--acid);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--acid);
+  animation: pulse 1.6s infinite;
+}
+
+/* Time chip top-left of viewport (besides nav) */
+.time-chip {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 95;
+  padding: 8px 14px;
+  background: rgba(20, 10, 36, 0.7);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  backdrop-filter: blur(10px);
+}
+
+/* Magnetic button effect — JS adds inline transforms */
+.btn { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), background 0.25s, border-color 0.25s; }
+
+/* Hero text reveal — split letters animation */
+.hero h1 .word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.hero h1 .word > span {
+  display: inline-block;
+  transform: translateY(110%);
+  animation: lift 1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+.hero h1 .word:nth-child(1) > span { animation-delay: 0.1s; }
+.hero h1 .word:nth-child(2) > span { animation-delay: 0.25s; }
+.hero h1 .word:nth-child(3) > span { animation-delay: 0.4s; }
+.hero h1 .word:nth-child(4) > span { animation-delay: 0.55s; }
+@keyframes lift {
+  to { transform: translateY(0); }
+}
+
+/* Glitch hover for cyber variant titles */
+.glitch:hover { animation: glitch 0.4s steps(2, end); }
+@keyframes glitch {
+  0% { transform: translate(0); text-shadow: none; }
+  20% { transform: translate(-2px, 1px); text-shadow: 2px 0 var(--violet-300), -2px 0 var(--rose); }
+  40% { transform: translate(2px, -1px); text-shadow: -2px 0 var(--violet-300), 2px 0 var(--rose); }
+  60% { transform: translate(-1px, 0); }
+  100% { transform: translate(0); text-shadow: none; }
+}
+
+/* Marquee pause on hover */
+.work-marquee:hover .marquee-row { animation-play-state: paused; }
+
+/* Section heading with marker */
+.section-head h2 {
+  position: relative;
+}
+.section-head h2::before {
+  content: "";
+  display: inline-block;
+  width: 10px; height: 10px;
+  background: var(--violet-300);
+  border-radius: 50%;
+  margin-right: 18px;
+  vertical-align: middle;
+  box-shadow: 0 0 16px var(--violet-300);
+  animation: pulse 2.4s infinite;
+}
