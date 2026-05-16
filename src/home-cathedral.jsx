@@ -88,46 +88,38 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       em: "Designs",
       kicker: "Brand — 2024",
       role: "CGI · Brand · Direction",
-      desc: "Identity film and product CG for a Sofia-based jewellery house.",
+      desc: "Identity film and product CG for a boutique jewellery house.",
       bg: "linear-gradient(135deg, #b8a890 0%, #4a3a2a 100%)"
     }
   ];
   const [idx, setIdx] = useState(0);
   const [prevIdx, setPrevIdx] = useState(null);
+  const idxRef = useRef(0);        // always holds current index — avoids stale closures
   const autoRef = useRef(null);
+  const pausedRef = useRef(false);  // track hover state
   const total = slides.length;
 
   const goTo = (newIdx) => {
-    if (newIdx === idx) return;
-    setPrevIdx(idx);
+    if (newIdx === idxRef.current) return;
+    setPrevIdx(idxRef.current);
+    idxRef.current = newIdx;
     setIdx(newIdx);
     setTimeout(() => setPrevIdx(null), 900);
   };
-  const prev = () => goTo((idx - 1 + total) % total);
-  const next = () => goTo((idx + 1) % total);
+  const goPrev = () => goTo((idxRef.current - 1 + total) % total);
+  const goNext = () => goTo((idxRef.current + 1) % total);
 
   // Auto-play every 7s, pauses on hover
-  const startAuto = () => {
-    clearInterval(autoRef.current);
-    autoRef.current = setInterval(() => {
-      setPrevIdx(prev => {
-        // Can't call goTo here, so inline the logic
-        return null; // handled via setIdx below
-      });
-      setIdx(prev => {
-        setPrevIdx(prev);
-        const n = (prev + 1) % total;
-        setTimeout(() => setPrevIdx(null), 900);
-        return n;
-      });
-    }, 7000);
-  };
-  const stopAuto = () => clearInterval(autoRef.current);
-
   useEffect(() => {
-    startAuto();
+    autoRef.current = setInterval(() => {
+      if (pausedRef.current) return;         // skip tick while hovered
+      goTo((idxRef.current + 1) % total);
+    }, 7000);
     return () => clearInterval(autoRef.current);
   }, [total]);
+
+  const onEnter = () => { pausedRef.current = true; };
+  const onLeave = () => { pausedRef.current = false; };
 
   // Progress bar for current slide
   const [progress, setProgress] = useState(0);
@@ -137,6 +129,7 @@ window.CarouselSection = function CarouselSection({ goProject }) {
     const dur = 7000;
     let raf;
     const tick = () => {
+      if (pausedRef.current) { raf = requestAnimationFrame(tick); return; }
       const elapsed = Date.now() - start;
       setProgress(Math.min(elapsed / dur, 1));
       if (elapsed < dur) raf = requestAnimationFrame(tick);
@@ -152,7 +145,7 @@ window.CarouselSection = function CarouselSection({ goProject }) {
           <h2>Selected<br/><em>Work</em></h2>
         </div>
       </Reveal>
-      <div className="carousel-fw" onMouseEnter={stopAuto} onMouseLeave={startAuto}>
+      <div className="carousel-fw" onMouseEnter={onEnter} onMouseLeave={onLeave}>
         {/* All slides stacked, crossfade via opacity */}
         <div className="carousel-fw-stack">
           {slides.map((s, i) => (
@@ -178,8 +171,8 @@ window.CarouselSection = function CarouselSection({ goProject }) {
         {/* Controls — bottom bar */}
         <div className="carousel-fw-controls">
           <div className="carousel-fw-nav">
-            <button className="carousel-fw-btn" onClick={prev} aria-label="Previous">←</button>
-            <button className="carousel-fw-btn" onClick={next} aria-label="Next">→</button>
+            <button className="carousel-fw-btn" onClick={goPrev} aria-label="Previous">←</button>
+            <button className="carousel-fw-btn" onClick={goNext} aria-label="Next">→</button>
           </div>
           <div className="carousel-fw-indicators">
             {slides.map((s, i) => (
@@ -209,10 +202,10 @@ window.BentoGallery = function BentoGallery({ goProject }) {
     { kicker: "Motorsport", title: "Golden Hour — a tuned Supra at the last light of day", icon: "→", c: "c7", r: "r2", k: "golden" },
     { kicker: "Personal", title: "Mask of Utopia — sculptural 3D study in carved stone", icon: "Ø", c: "c5", k: "mask" },
     { kicker: "Music", title: "Stage Visuals — twelve live-render cues for Rite", icon: "♪", c: "c5", k: "stage" },
-    { kicker: "Brand", title: "Ethereal Designs — identity film and product CGI", icon: "◈", c: "c7", k: "ethereal" },
-    { kicker: "R&D", title: "Chronos 01 — time-sculpture experiments", icon: "◷", c: "c4", k: "chronos" },
+    { kicker: "Brand", title: "Ethereal Designs — identity film and product CGI", icon: "◈", c: "c5", k: "ethereal" },
+    { kicker: "R&D", title: "Chronos 01 — time-sculpture experiments", icon: "◷", c: "c7", k: "chronos" },
     { kicker: "Personal", title: "Neural Echoes — generative landscapes", icon: "∿", c: "c4", k: "neural" },
-    { kicker: "Direction", title: "Datmaxp.jet — automotive culture series", icon: "▶", c: "c4", k: "datmaxp" }
+    { kicker: "Direction", title: "Datmaxp.jet — automotive culture series", icon: "▶", c: "c8", k: "datmaxp" }
   ];
 
   return (
