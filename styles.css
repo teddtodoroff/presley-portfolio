@@ -715,9 +715,7 @@ section { position: relative; }
 }
 
 @media (max-width: 900px) {
-  .nav { padding: 16px 20px; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .nav-left { display: none; }
-  .nav-brand { font-size: 16px; text-align: left; }
+  /* Nav mobile overrides moved to styles-redesign.css */
   .container { padding: 0 20px; }
   .proj-info { grid-template-columns: 1fr 1fr; }
   .proj-grid > * { grid-column: span 12 !important; }

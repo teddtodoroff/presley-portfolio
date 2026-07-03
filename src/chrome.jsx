@@ -6,8 +6,7 @@ const { useState, useEffect, useRef } = React;
 // ============================================
 window.Nav = function Nav({ page, setPage }) {
   const leftLinks = [
-    { id: "work", label: "Work" },
-    { id: "work", label: "Gallery" }
+    { id: "work", label: "Work" }
   ];
   const rightLinks = [
     { id: "about", label: "CV · About" },
