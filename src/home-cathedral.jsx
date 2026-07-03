@@ -266,30 +266,45 @@ window.MaskSection = function MaskSection() {
     { key: "starvation", label: "Starvation" }
   ];
 
-  // Morph target animation
+  // Morph target animation via model-viewer scene graph
   const setMorph = (expr) => {
     setExpression(expr);
     const mv = viewerRef.current;
-    if (!mv) return;
+    if (!mv || !mv.model) return;
     const targets = { malice: "Malice", sensory: "Sensory Overload", starvation: "Starvation" };
-    // Animate all targets to 0 first, then selected to 1
-    Object.values(targets).forEach(t => {
-      try { mv.setAttribute(`morph-target-${t.replace(/\s/g, "-")}`, "0"); } catch(e) {}
-    });
-    // Use model-viewer's scene graph for morph targets
-    if (mv.model) {
-      const mesh = mv.model.meshes?.find(m => m.name === "mesh.002") || mv.model.meshes?.[2];
-      if (mesh) {
-        // Reset all
-        Object.values(targets).forEach(t => {
-          try { mesh.setMorphTargetWeight(t, 0); } catch(e) {}
-        });
-        // Set selected
-        if (targets[expr]) {
-          try { mesh.setMorphTargetWeight(targets[expr], 1); } catch(e) {}
+    // mesh.002 is index 2 — the mask mesh with 3 shape keys
+    const meshes = mv.model.meshes || [];
+    for (let mi = 0; mi < meshes.length; mi++) {
+      const mesh = meshes[mi];
+      // Try each primitive in the mesh
+      const prims = mesh.primitives || [];
+      for (let pi = 0; pi < prims.length; pi++) {
+        const prim = prims[pi];
+        if (!prim || !prim.morphTargetInfluences) continue;
+        const names = prim.morphTargetNames || [];
+        // Reset all, then set selected
+        for (let ti = 0; ti < names.length; ti++) {
+          prim.morphTargetInfluences[ti] = (targets[expr] && names[ti] === targets[expr]) ? 1 : 0;
         }
       }
     }
+    // Also try the Three.js scene directly (model-viewer exposes it)
+    try {
+      mv.model.traverse && mv.model.traverse((child) => {
+        if (child.morphTargetInfluences && child.morphTargetDictionary) {
+          Object.values(targets).forEach(t => {
+            if (t in child.morphTargetDictionary) {
+              child.morphTargetInfluences[child.morphTargetDictionary[t]] = 0;
+            }
+          });
+          if (targets[expr] && targets[expr] in child.morphTargetDictionary) {
+            child.morphTargetInfluences[child.morphTargetDictionary[targets[expr]]] = 1;
+          }
+        }
+      });
+    } catch(e) {}
+    // Force a re-render
+    mv.requestUpdate && mv.requestUpdate();
   };
 
   // Scroll-driven text phases

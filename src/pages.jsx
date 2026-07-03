@@ -37,8 +37,8 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       role: { lbl: "Role", v: "Character Designer · Texturing", desc: "Solo project — narrative-first character design." },
       info2: { lbl: "Type", v: "Solo · 3D Character", desc: "Every visual decision informed by a complete fictional history." },
       info3: { lbl: "Tools", v: "Blender · Substance Painter", desc: "Three expressions (Malice, Sensory Overload, Starvation) via shape keys." },
-      thumbLabels: ["Full character"],
-      thumbCount: 1
+      thumbLabels: [],
+      thumbCount: 0
     }
   };
   const data = projectData[title] || projectData["Dike Or Strike"];
@@ -88,7 +88,7 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       </section>
 
       <section className="proj-featured">
-        <div className="frame" style={heroImg ? { backgroundImage: `url(${thumbImgs[active] || heroImg})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
+        <div className="frame" style={heroImg ? { backgroundImage: `url(${thumbImgs.length > 0 ? thumbImgs[active] : heroImg})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
           <div className="quote-overlay">
             <span className="kicker">{title.toUpperCase()}</span>
             <blockquote>
