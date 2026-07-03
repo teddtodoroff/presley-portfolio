@@ -422,26 +422,22 @@ window.HomeAbout = function HomeAbout() {
             <span>Groningen / NL</span>
           </div>
           <h3>Presley<br/>Yordanov</h3>
-          <div className="cv-role">UI/UX · VFX Artist</div>
+          <div className="cv-role">UI/UX Designer &amp; VFX Artist</div>
           <div className="cv-row">
             <span className="y">2026</span>
-            <span className="t">Groningen Provincial House - <em>Dike Or Strike</em>. UI/UX, Systems Design.</span>
+            <span className="t"><em>Dike Or Strike</em>. Solo UI/UX · System Design.</span>
           </div>
           <div className="cv-row">
             <span className="y">2026</span>
-            <span className="t">University of Groningen - <em>Oops! A Data Breach</em>. Solo UI/UX.</span>
+            <span className="t"><em>Oops! A Data Breach</em>. Solo UI/UX · System Design.</span>
           </div>
           <div className="cv-row">
             <span className="y">2025</span>
-            <span className="t">Walls of Eden - VR game. UI/UX, Narrative, 3D.</span>
+            <span className="t"><em>Walls of Eden</em>. Solo UI/UX · 3D &amp; Texturing.</span>
           </div>
           <div className="cv-row">
             <span className="y">2025</span>
-            <span className="t">Folkloric Character - solo 3D, Blender &amp; Substance Painter.</span>
-          </div>
-          <div className="cv-row">
-            <span className="y">2025</span>
-            <span className="t">Unreal Cinematic - Compositing, Visual Storytelling.</span>
+            <span className="t"><em>Unreal Cinematic</em>. Compositing · Visual Storytelling.</span>
           </div>
           <div className="cv-row">
             <span className="y">2024</span>
