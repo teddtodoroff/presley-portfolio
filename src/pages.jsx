@@ -234,7 +234,12 @@ window.AboutPage = function AboutPage() {
       </section>
 
       <section className="container about-grid">
-        <div className="about-portrait" />
+        <div className="about-portrait">
+            <a href="assets/cv-presley-yordanov.pdf" download style={{ display: "block", width: "100%", height: "100%" }}>
+              <img src="assets/cv-presley-yordanov.png" alt="Presley Yordanov - CV 2026"
+                style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", borderRadius: "inherit" }} />
+            </a>
+          </div>
         <div className="about-bio">
           <p>
             I'm a <strong>UI/UX &amp; VFX artist</strong> based in Groningen, Netherlands -
@@ -250,17 +255,6 @@ window.AboutPage = function AboutPage() {
             Open for collaborations and project work. If your project needs thoughtful
             interaction design or atmospheric visual storytelling, let's talk.
           </p>
-
-          <div className="cv-block" style={{ marginTop: 32, marginBottom: 40 }}>
-            <a href="assets/cv-presley-yordanov.pdf" className="cv-download" download>
-              Download CV <span>↓</span>
-            </a>
-            <div className="cv-preview"
-              style={{ marginTop: 16, borderRadius: 8, overflow: "hidden", border: "1px solid var(--line)" }}>
-              <img src="assets/cv-presley-yordanov.png" alt="Presley Yordanov - CV 2026"
-                style={{ width: "100%", display: "block", opacity: 0.85 }} />
-            </div>
-          </div>
 
           <div className="about-list">
             <div>
