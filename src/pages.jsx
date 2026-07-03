@@ -173,14 +173,17 @@ window.WorkIndex = function WorkIndex({ goProject }) {
       <section className="container" ref={containerRef} style={{ position: "relative" }}>
         {/* Floating preview thumbnail */}
         {hovered !== null && (
-          <div className="work-preview-float" style={{
+          <div key={hovered} className="work-preview-float" style={{
             left: mousePos.x + 20,
             top: mousePos.y - 80,
-            background: projects[hovered].bg,
-            backgroundImage: projects[hovered].img ? `url(${projects[hovered].img})` : undefined,
-            backgroundSize: "cover",
-            backgroundPosition: "center"
+            background: projects[hovered].bg
           }}>
+            {projects[hovered].img && (
+              <img src={projects[hovered].img} alt="" style={{
+                position: "absolute", inset: 0, width: "100%", height: "100%",
+                objectFit: "cover", pointerEvents: "none"
+              }} />
+            )}
             <span className="work-preview-label">{projects[hovered].t}</span>
           </div>
         )}

@@ -336,15 +336,17 @@ window.MaskSection = function MaskSection() {
             auto-rotate-delay="0"
             rotation-per-second="12deg"
             interaction-prompt="none"
-            camera-orbit="0deg 75deg 2.5m"
-            min-camera-orbit="auto auto 1.5m"
-            max-camera-orbit="auto auto 4m"
-            field-of-view="30deg"
+            camera-orbit="0deg 80deg 3.5m"
+            min-camera-orbit="auto auto 2m"
+            max-camera-orbit="auto auto 6m"
+            field-of-view="28deg"
             style={{
               width: "100%",
               height: "100%",
               background: "transparent",
-              "--poster-color": "transparent"
+              "--poster-color": "transparent",
+              outline: "none",
+              border: "none"
             }}
           />
         </div>
