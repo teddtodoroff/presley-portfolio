@@ -258,6 +258,7 @@ window.MaskSection = function MaskSection() {
   const [expression, setExpression] = useState("neutral");
   const sectionRef = useRef(null);
   const viewerRef = useRef(null);
+  const orbitRef = useRef({ theta: 0, phi: 75 }); // current smoothed angles
 
   const expressions = [
     { key: "neutral", label: "Neutral" },
@@ -324,6 +325,61 @@ window.MaskSection = function MaskSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Mouse-follow rotation — gentle ±30° horizontal, ±10° vertical
+  useEffect(() => {
+    const BASE_THETA = 0;   // center horizontal angle
+    const BASE_PHI = 75;    // center vertical angle
+    const MAX_H = 30;       // ±30° horizontal range
+    const MAX_V = 10;       // ±10° vertical range
+    const LERP = 0.06;      // smoothing factor
+    let target = { theta: BASE_THETA, phi: BASE_PHI };
+    let raf;
+    let active = false;     // mouse inside mask section?
+
+    const onMove = (e) => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      // Only track when section is visible
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      active = true;
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      // Normalised -1 to 1 from centre of section
+      const nx = Math.max(-1, Math.min(1, (e.clientX - cx) / (rect.width / 2)));
+      const ny = Math.max(-1, Math.min(1, (e.clientY - cy) / (rect.height / 2)));
+      target.theta = BASE_THETA - nx * MAX_H; // negative so model faces toward cursor
+      target.phi = BASE_PHI - ny * MAX_V;
+    };
+
+    const onLeave = () => {
+      active = false;
+      target.theta = BASE_THETA;
+      target.phi = BASE_PHI;
+    };
+
+    const animate = () => {
+      const o = orbitRef.current;
+      o.theta += (target.theta - o.theta) * LERP;
+      o.phi += (target.phi - o.phi) * LERP;
+      const mv = viewerRef.current;
+      if (mv) {
+        const dist = "5.5m";
+        mv.cameraOrbit = `${o.theta.toFixed(2)}deg ${o.phi.toFixed(2)}deg ${dist}`;
+      }
+      raf = requestAnimationFrame(animate);
+    };
+    raf = requestAnimationFrame(animate);
+
+    window.addEventListener("mousemove", onMove);
+    document.addEventListener("mouseleave", onLeave);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
   const phrases = [
     { l: "ANCIENT", r: "FOLKLORE" },
     { l: "CONTAINED", r: "POWER" },
@@ -346,14 +402,8 @@ window.MaskSection = function MaskSection() {
             ref={viewerRef}
             src="assets/models/character-v3.glb"
             alt="Folkloric Character — interactive 3D model"
-            camera-controls
-            auto-rotate
-            auto-rotate-delay="0"
-            rotation-per-second="12deg"
             interaction-prompt="none"
             camera-orbit="0deg 75deg 5.5m"
-            min-camera-orbit="auto auto 3m"
-            max-camera-orbit="auto auto 8m"
             field-of-view="32deg"
             style={{
               width: "100%",
