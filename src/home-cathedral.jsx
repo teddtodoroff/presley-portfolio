@@ -255,58 +255,9 @@ window.BentoGallery = function BentoGallery({ goProject }) {
 // ============================================
 window.MaskSection = function MaskSection() {
   const [phase, setPhase] = useState(0);
-  const [expression, setExpression] = useState("neutral");
   const sectionRef = useRef(null);
   const viewerRef = useRef(null);
   const orbitRef = useRef({ theta: 0, phi: 75 }); // current smoothed angles
-
-  const expressions = [
-    { key: "neutral", label: "Neutral" },
-    { key: "malice", label: "Malice" },
-    { key: "sensory", label: "Sensory Overload" },
-    { key: "starvation", label: "Starvation" }
-  ];
-
-  // Morph target animation via model-viewer scene graph
-  const setMorph = (expr) => {
-    setExpression(expr);
-    const mv = viewerRef.current;
-    if (!mv || !mv.model) return;
-    const targets = { malice: "Malice", sensory: "Sensory Overload", starvation: "Starvation" };
-    // mesh.002 is index 2 — the mask mesh with 3 shape keys
-    const meshes = mv.model.meshes || [];
-    for (let mi = 0; mi < meshes.length; mi++) {
-      const mesh = meshes[mi];
-      // Try each primitive in the mesh
-      const prims = mesh.primitives || [];
-      for (let pi = 0; pi < prims.length; pi++) {
-        const prim = prims[pi];
-        if (!prim || !prim.morphTargetInfluences) continue;
-        const names = prim.morphTargetNames || [];
-        // Reset all, then set selected
-        for (let ti = 0; ti < names.length; ti++) {
-          prim.morphTargetInfluences[ti] = (targets[expr] && names[ti] === targets[expr]) ? 1 : 0;
-        }
-      }
-    }
-    // Also try the Three.js scene directly (model-viewer exposes it)
-    try {
-      mv.model.traverse && mv.model.traverse((child) => {
-        if (child.morphTargetInfluences && child.morphTargetDictionary) {
-          Object.values(targets).forEach(t => {
-            if (t in child.morphTargetDictionary) {
-              child.morphTargetInfluences[child.morphTargetDictionary[t]] = 0;
-            }
-          });
-          if (targets[expr] && targets[expr] in child.morphTargetDictionary) {
-            child.morphTargetInfluences[child.morphTargetDictionary[targets[expr]]] = 1;
-          }
-        }
-      });
-    } catch(e) {}
-    // Force a re-render
-    mv.requestUpdate && mv.requestUpdate();
-  };
 
   // Scroll-driven text phases
   useEffect(() => {
@@ -414,21 +365,6 @@ window.MaskSection = function MaskSection() {
               border: "none"
             }}
           />
-        </div>
-
-        {/* Expression switcher */}
-        <div className="mask-expressions">
-          <span className="mask-expr-label">Expression</span>
-          {expressions.map(e => (
-            <button
-              key={e.key}
-              className={"mask-expr-btn" + (expression === e.key ? " active" : "")}
-              onClick={() => setMorph(e.key)}
-            >
-              <span className="mask-expr-dot" />
-              {e.label}
-            </button>
-          ))}
         </div>
 
         <div className="mask-caption">Folkloric Character Design · Interactive 3D · Blender &amp; Substance Painter</div>
