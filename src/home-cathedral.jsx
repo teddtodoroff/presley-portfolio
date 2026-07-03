@@ -66,7 +66,7 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       role: "UI Design · UX Research · Systems Design",
       desc: "A local co-op strategy game transforming democracy into a meaningful, emotionally engaging experience through player agency and community-driven decision making.",
       bg: "linear-gradient(135deg, #2a4a2a 0%, #1a0e0a 100%)",
-      img: "assets/projects/dike-or-strike/hero.webp"
+      img: "assets/projects/dike-or-strike/thumb-1.webp"
     },
     {
       title: "Oops! A Data Breach",
@@ -75,7 +75,7 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       role: "Solo UI/UX Design · Research",
       desc: "A cybersecurity learning game with stealth education through intuitive interactions and player-centred UX, designed for short 2–5 minute sessions.",
       bg: "linear-gradient(135deg, #1a2a4a 0%, #0a0a1e 100%)",
-      img: "assets/projects/oops-data-breach/hero.webp"
+      img: "assets/projects/oops-data-breach/thumb-1.webp"
     },
     {
       title: "Walls of Eden",
@@ -84,7 +84,7 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       role: "UI/UX Design · Narrative System · 3D & Texturing",
       desc: "A dystopian VR game using interface design as a storytelling medium - reinforcing narrative themes, player morality, and corporate influence through visual language.",
       bg: "linear-gradient(135deg, #0a2a3a 0%, #040810 100%)",
-      img: "assets/projects/walls-of-eden/hero.webp"
+      img: "assets/projects/walls-of-eden/thumb-3.webp"
     },
     {
       title: "Folkloric Character",
@@ -93,7 +93,7 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       role: "Character Design · Texturing",
       desc: "A narrative-driven creature whose identity is communicated through silhouette, expression, and texturing - designed to feel almost human, but unmistakably wrong.",
       bg: "linear-gradient(135deg, #3a2a4a 0%, #0e0814 100%)",
-      img: "assets/projects/folkloric-character/hero.webp"
+      img: "assets/projects/folkloric-character/thumb-5.webp"
     }
   ];
   const [idx, setIdx] = useState(0);
@@ -208,13 +208,10 @@ window.CarouselSection = function CarouselSection({ goProject }) {
 // ============================================
 window.BentoGallery = function BentoGallery({ goProject }) {
   const tiles = [
-    { kicker: "Strategy", title: "Dike Or Strike - board game-inspired UI for democratic gameplay", icon: "⚔", c: "c7", r: "r2", k: "dike", img: "assets/projects/dike-or-strike/hero.webp", proj: "Dike Or Strike" },
-    { kicker: "UI/UX", title: "Dike Or Strike - character selection and menu systems", icon: "◈", c: "c5", k: "dike-ui", img: "assets/projects/dike-or-strike/thumb-2.webp", proj: "Dike Or Strike" },
-    { kicker: "Educational", title: "Oops! Data Breach - isometric campus hub and puzzle screens", icon: "🛡", c: "c5", k: "oops", img: "assets/projects/oops-data-breach/hero.webp", proj: "Oops! A Data Breach" },
+    { kicker: "Strategy", title: "Dike Or Strike - character selection and democratic gameplay", icon: "⚔", c: "c7", r: "r2", k: "dike", img: "assets/projects/dike-or-strike/thumb-2.webp", proj: "Dike Or Strike" },
+    { kicker: "Educational", title: "Oops! Data Breach - isometric campus hub and puzzle screens", icon: "🛡", c: "c5", k: "oops", img: "assets/projects/oops-data-breach/thumb-2.webp", proj: "Oops! A Data Breach" },
     { kicker: "VR", title: "Walls of Eden - dystopian narrative UI and moral choice system", icon: "◎", c: "c5", k: "eden", img: "assets/projects/walls-of-eden/thumb-2.webp", proj: "Walls of Eden" },
-    { kicker: "Narrative", title: "Walls of Eden - VR visor interface and corporate branding", icon: "⊕", c: "c7", k: "eden-vr", img: "assets/projects/walls-of-eden/hero.webp", proj: "Walls of Eden" },
-    { kicker: "3D", title: "Folkloric Character - creature with three emotional expressions", icon: "Ø", c: "c4", k: "folk", img: "assets/projects/folkloric-character/hero.webp", proj: "Folkloric Character" },
-    { kicker: "Texturing", title: "Folkloric Character - mask as narrative device, silver burns and engravings", icon: "◷", c: "c8", k: "folk-mask", img: "assets/projects/folkloric-character/hero.webp", proj: "Folkloric Character" }
+    { kicker: "3D", title: "Folkloric Character - creature render and textured mask", icon: "Ø", c: "c7", k: "folk", img: "assets/projects/folkloric-character/hero.webp", proj: "Folkloric Character" }
   ];
 
   return (
