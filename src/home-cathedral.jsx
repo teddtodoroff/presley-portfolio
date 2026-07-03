@@ -351,7 +351,7 @@ window.MaskSection = function MaskSection() {
         <div className="mask-figure-wrap">
           <model-viewer
             ref={viewerRef}
-            src="assets/models/character-v3.glb"
+            src="assets/models/character-v3.glb?v=2"
             alt="Folkloric Character — interactive 3D model"
             interaction-prompt="none"
             camera-orbit="0deg 75deg 5.5m"
