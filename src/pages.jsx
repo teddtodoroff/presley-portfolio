@@ -14,7 +14,7 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       info2: { lbl: "Client / Genre", v: "Groningen Provincial House · Co-op Strategy", desc: "Group project - board game-inspired interface with Dutch identity." },
       info3: { lbl: "Tools", v: "Figma · Unity · Blender · Jira", desc: "Interfaces readable over 3-meter distances, embedded Dutch visual language." },
       quote: { text: "Transforming democracy into a meaningful, emotionally engaging experience through player agency.", attr: "Project overview" },
-      thumbLabels: ["One-pager overview", "Character selection", "Main menu", "Lose screen", "Win screen"],
+      thumbLabels: ["One-pager overview", "Character selection", "Quest cards", "Lose screen", "Win screen"],
       thumbCount: 5
     },
     "Oops! A Data Breach": {
@@ -250,6 +250,17 @@ window.AboutPage = function AboutPage() {
             Open for collaborations and project work. If your project needs thoughtful
             interaction design or atmospheric visual storytelling, let's talk.
           </p>
+
+          <div className="cv-block" style={{ marginTop: 32, marginBottom: 40 }}>
+            <a href="assets/cv-presley-yordanov.pdf" className="cv-download" download>
+              Download CV <span>↓</span>
+            </a>
+            <div className="cv-preview"
+              style={{ marginTop: 16, borderRadius: 8, overflow: "hidden", border: "1px solid var(--line)" }}>
+              <img src="assets/cv-presley-yordanov.png" alt="Presley Yordanov - CV 2026"
+                style={{ width: "100%", display: "block", opacity: 0.85 }} />
+            </div>
+          </div>
 
           <div className="about-list">
             <div>
