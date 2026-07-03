@@ -160,15 +160,8 @@ window.HudBadges = function HudBadges() {
     const id = setInterval(tick, 1000);
     return () => clearInterval(id);
   }, []);
-  return (
-    <>
-      <div className="status-badge">
-        <span className="pulse" />
-        <span>Open to work · 2026</span>
-      </div>
-      <div className="time-chip">{time}</div>
-    </>
-  );
+  // HUD badges removed — they overlapped the hero footer text
+  return null;
 };
 
 // Letter reveal helper for hero h1
