@@ -137,7 +137,7 @@ window.HomeCyber = function HomeCyber() {
           PRESLEY.YORDANOV / SYS.001
         </div>
         <div style={{ position: "absolute", right: 40, bottom: 40, fontFamily: "var(--mono)", fontSize: 11, letterSpacing: ".18em", color: "var(--ink-mute)", textTransform: "uppercase", textAlign: "right" }}>
-          STATUS — AVAILABLE<br/>OPEN FOR PROJECTS / 26
+          STATUS - AVAILABLE<br/>OPEN FOR PROJECTS / 26
         </div>
       </section>
 

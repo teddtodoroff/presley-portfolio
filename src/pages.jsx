@@ -2,16 +2,16 @@
 const { useState, useEffect } = React;
 
 // ============================================
-// PROJECT DETAIL PAGE — per Presley's wireframe
+// PROJECT DETAIL PAGE - per Presley's wireframe
 // Title hero card + ROLE/INFO/INFO meta strip + featured shot with quote + thumb strip
 // ============================================
 window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }) {
-  // Project metadata — data-driven per project
+  // Project metadata - data-driven per project
   const projectData = {
     "Dike Or Strike": {
       slug: "dike-or-strike",
       role: { lbl: "Role", v: "UI Designer · UX Researcher · Systems Designer", desc: "Led UI design, conducted 88+ cultural probes, interviews, and playtests." },
-      info2: { lbl: "Client / Genre", v: "Groningen Provincial House · Co-op Strategy", desc: "Group project — board game-inspired interface with Dutch identity." },
+      info2: { lbl: "Client / Genre", v: "Groningen Provincial House · Co-op Strategy", desc: "Group project - board game-inspired interface with Dutch identity." },
       info3: { lbl: "Tools", v: "Figma · Unity · Blender · Jira", desc: "Interfaces readable over 3-meter distances, embedded Dutch visual language." },
       quote: { text: "Transforming democracy into a meaningful, emotionally engaging experience through player agency.", attr: "Project overview" },
       thumbLabels: ["One-pager overview", "Character selection", "Main menu", "Gameplay tutorial", "Quest screen"],
@@ -20,28 +20,28 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
     "Oops! A Data Breach": {
       slug: "oops-data-breach",
       role: { lbl: "Role", v: "Solo UI Designer · UX Researcher", desc: "End-to-end UI/UX for an educational cybersecurity game." },
-      info2: { lbl: "Client / Genre", v: "University of Groningen · Educational", desc: "Team project — stealth learning through intuitive interactions." },
+      info2: { lbl: "Client / Genre", v: "University of Groningen · Educational", desc: "Team project - stealth learning through intuitive interactions." },
       info3: { lbl: "Tools", v: "Figma · Unity · Trello · Miro", desc: "Designed for short 2–5 minute play sessions, matching 70% of participants' preferred session length." },
-      quote: { text: "Stealth education through intuitive interactions — making cybersecurity feel natural, not forced.", attr: "Project overview" },
+      quote: { text: "Stealth education through intuitive interactions - making cybersecurity feel natural, not forced.", attr: "Project overview" },
       thumbLabels: ["Isometric campus hub", "Pipe puzzle", "Word puzzle", "Characters", "Achievements"],
       thumbCount: 5
     },
     "Walls of Eden": {
       slug: "walls-of-eden",
-      role: { lbl: "Role", v: "UI/UX Designer · Narrative System · 3D & Texturing", desc: "UI as storytelling medium — reinforcing corporate influence through visual language." },
-      info2: { lbl: "Genre", v: "VR Game · Dystopian", desc: "Group project — moral choices with consequence-driven interactions." },
+      role: { lbl: "Role", v: "UI/UX Designer · Narrative System · 3D & Texturing", desc: "UI as storytelling medium - reinforcing corporate influence through visual language." },
+      info2: { lbl: "Genre", v: "VR Game · Dystopian", desc: "Group project - moral choices with consequence-driven interactions." },
       info3: { lbl: "Tools", v: "Figma · Blender · Substance Painter · Trello", desc: "Cohesive visual identity for in-world corporation, integrated branding into gameplay." },
-      quote: { text: "Interface design as a storytelling medium — reinforcing narrative themes through visual language.", attr: "Project overview" },
+      quote: { text: "Interface design as a storytelling medium - reinforcing narrative themes through visual language.", attr: "Project overview" },
       thumbLabels: ["Visor interface", "Moral choice UI", "In-game view", "SafeHaven logo", "Commission screen"],
       thumbCount: 5
     },
     "Folkloric Character": {
       slug: "folkloric-character",
-      role: { lbl: "Role", v: "Character Designer · Texturing", desc: "Solo project — narrative-first character design." },
+      role: { lbl: "Role", v: "Character Designer · Texturing", desc: "Solo project - narrative-first character design." },
       info2: { lbl: "Type", v: "Solo · 3D Character", desc: "Every visual decision informed by a complete fictional history." },
       info3: { lbl: "Tools", v: "Blender · Substance Painter", desc: "Three expressions (Malice, Sensory Overload, Starvation) via shape keys." },
-      quote: { text: "A creature of intense, destructive hunger — the mask exists as a physical barrier to keep that danger contained. Every detail carries psychological weight.", attr: "Character concept" },
-      thumbLabels: ["Character — alternate lighting", "Mask wireframe topology", "Mask textured render"],
+      quote: { text: "A character of intense, destructive hunger, but with a physical barrier to keep that danger contained; psychological weight behind every detail.", attr: "Character concept" },
+      thumbLabels: ["Character - alternate lighting", "Mask wireframe topology", "Mask textured render"],
       thumbCount: 3
     }
   };
@@ -52,7 +52,7 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
   const thumbs = data.thumbLabels;
   const slug = data.slug;
   const thumbCount = data.thumbCount || thumbs.length;
-  // Build image paths — hero for featured, thumb-N for thumbnails
+  // Build image paths - hero for featured, thumb-N for thumbnails
   const heroImg = slug ? `assets/projects/${slug}/hero.webp` : null;
   const thumbImgs = [];
   for (let i = 1; i <= thumbCount; i++) {
@@ -99,7 +99,7 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
             <blockquote>
               "{quote.text}"
             </blockquote>
-            <footer>— {quote.attr}</footer>
+            <footer>- {quote.attr}</footer>
           </div>
         </div>
         {thumbCount > 0 && (
@@ -137,7 +137,7 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
 };
 
 // ============================================
-// WORK INDEX PAGE — list of all projects
+// WORK INDEX PAGE - list of all projects
 // ============================================
 window.WorkIndex = function WorkIndex({ goProject }) {
   const projects = [
@@ -168,7 +168,7 @@ window.WorkIndex = function WorkIndex({ goProject }) {
             Selected<br/><em>Work.</em>
           </h1>
           <p className="lede" style={{ marginTop: 30, maxWidth: 600 }}>
-            Game UI/UX, narrative systems, 3D character design — projects built at the
+            Game UI/UX, narrative systems, 3D character design - projects built at the
             intersection of player experience and visual storytelling.
           </p>
         </Reveal>
@@ -237,13 +237,13 @@ window.AboutPage = function AboutPage() {
         <div className="about-portrait" />
         <div className="about-bio">
           <p>
-            I'm a <strong>UI/UX &amp; VFX artist</strong> based in Groningen, Netherlands —
+            I'm a <strong>UI/UX &amp; VFX artist</strong> based in Groningen, Netherlands -
             studying Creative Media &amp; Game Technologies at Hanze University. I design
             player-centred interfaces, narrative systems, and atmospheric 3D worlds.
           </p>
           <p>
             My work sits at the intersection of <strong>behavioral design, emotional design,
-            and atmosphere</strong> — using visual hierarchy, information architecture, and
+            and atmosphere</strong> - using visual hierarchy, information architecture, and
             environmental storytelling to create experiences that feel intuitive and immersive.
           </p>
           <p>
@@ -324,7 +324,7 @@ window.ContactPage = function ContactPage() {
       <CathedralBg intensity={0.6} />
 
       <section className="container" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "140px 40px 60px" }}>
-        <div className="eyebrow" style={{ marginBottom: 24 }}>— Contact</div>
+        <div className="eyebrow" style={{ marginBottom: 24 }}>- Contact</div>
         <h1 className="serif" style={{ fontSize: "clamp(72px, 12vw, 220px)", lineHeight: 0.9 }}>
           Let's create<br/><em>something</em><br/>together.
         </h1>
@@ -351,7 +351,7 @@ window.ContactPage = function ContactPage() {
           <div><div className="eyebrow" style={{ marginBottom: 8 }}>Status</div><div>Open for projects</div></div>
           <div><div className="eyebrow" style={{ marginBottom: 8 }}>Located</div><div>Groningen, NL</div></div>
           <div><div className="eyebrow" style={{ marginBottom: 8 }}>Study</div><div>Hanze University</div></div>
-          <div><div className="eyebrow" style={{ marginBottom: 8 }}>Hours</div><div>CET / 09 — 19</div></div>
+          <div><div className="eyebrow" style={{ marginBottom: 8 }}>Hours</div><div>CET / 09 - 19</div></div>
         </div>
       </section>
 

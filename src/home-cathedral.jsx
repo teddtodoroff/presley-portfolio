@@ -2,7 +2,7 @@
 const { useState, useEffect, useRef } = React;
 
 // ============================================
-// HOME — Cathedral (redesign per Presley's wireframes 2026-05)
+// HOME - Cathedral (redesign per Presley's wireframes 2026-05)
 // Hero (TEXT TITLE + 3 cards) → Carousel → Bento → Mask → About/CV → Contact
 // ============================================
 window.HomeCathedral = function HomeCathedral({ goProject }) {
@@ -26,13 +26,13 @@ window.HomeCathedral = function HomeCathedral({ goProject }) {
 };
 
 // ============================================
-// HERO — big TEXT TITLE + 3-card image module
+// HERO - big TEXT TITLE + 3-card image module
 // ============================================
 window.HomeHero = function HomeHero({ goProject }) {
   return (
     <section className="home-hero">
       <div className="eyebrow-row">
-        <span><span className="live-dot" />Groningen, NL — open for projects, 2026</span>
+        <span><span className="live-dot" />Groningen, NL - open for projects, 2026</span>
         <span className="ix">Index № 001 · UI/UX · VFX</span>
       </div>
 
@@ -41,7 +41,7 @@ window.HomeHero = function HomeHero({ goProject }) {
           UI/UX · VFX<br/><em>Artist.</em>
         </h1>
         <p className="title-sub">
-          Presley Yordanov — designing player-centred interfaces, narrative-driven
+          Presley Yordanov - designing player-centred interfaces, narrative-driven
           systems &amp; atmospheric 3D worlds. Groningen &amp; worldwide.
         </p>
       </div>
@@ -55,7 +55,7 @@ window.HomeHero = function HomeHero({ goProject }) {
 };
 
 // ============================================
-// CAROUSEL — full-width crossfade, modern controls
+// CAROUSEL - full-width crossfade, modern controls
 // ============================================
 window.CarouselSection = function CarouselSection({ goProject }) {
   const slides = [
@@ -82,7 +82,7 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       em: "Eden",
       kicker: "VR Game · Group Project",
       role: "UI/UX Design · Narrative System · 3D & Texturing",
-      desc: "A dystopian VR game using interface design as a storytelling medium — reinforcing narrative themes, player morality, and corporate influence through visual language.",
+      desc: "A dystopian VR game using interface design as a storytelling medium - reinforcing narrative themes, player morality, and corporate influence through visual language.",
       bg: "linear-gradient(135deg, #0a2a3a 0%, #040810 100%)",
       img: "assets/projects/walls-of-eden/hero.webp"
     },
@@ -91,14 +91,14 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       em: "Character",
       kicker: "3D · Solo Project",
       role: "Character Design · Texturing",
-      desc: "A narrative-driven creature whose identity is communicated through silhouette, expression, and texturing — designed to feel almost human, but unmistakably wrong.",
+      desc: "A narrative-driven creature whose identity is communicated through silhouette, expression, and texturing - designed to feel almost human, but unmistakably wrong.",
       bg: "linear-gradient(135deg, #3a2a4a 0%, #0e0814 100%)",
       img: "assets/projects/folkloric-character/hero.webp"
     }
   ];
   const [idx, setIdx] = useState(0);
   const [prevIdx, setPrevIdx] = useState(null);
-  const idxRef = useRef(0);        // always holds current index — avoids stale closures
+  const idxRef = useRef(0);        // always holds current index - avoids stale closures
   const autoRef = useRef(null);
   const pausedRef = useRef(false);  // track hover state
   const total = slides.length;
@@ -177,7 +177,7 @@ window.CarouselSection = function CarouselSection({ goProject }) {
           ))}
         </div>
 
-        {/* Controls — bottom bar */}
+        {/* Controls - bottom bar */}
         <div className="carousel-fw-controls">
           <div className="carousel-fw-nav">
             <button className="carousel-fw-btn" onClick={goPrev} aria-label="Previous">←</button>
@@ -204,17 +204,17 @@ window.CarouselSection = function CarouselSection({ goProject }) {
 };
 
 // ============================================
-// BENTO — Koto-style asymmetric grid, imagery does the work
+// BENTO - Koto-style asymmetric grid, imagery does the work
 // ============================================
 window.BentoGallery = function BentoGallery({ goProject }) {
   const tiles = [
-    { kicker: "Strategy", title: "Dike Or Strike — board game-inspired UI for democratic gameplay", icon: "⚔", c: "c7", r: "r2", k: "dike", img: "assets/projects/dike-or-strike/hero.webp", proj: "Dike Or Strike" },
-    { kicker: "UI/UX", title: "Dike Or Strike — character selection and menu systems", icon: "◈", c: "c5", k: "dike-ui", img: "assets/projects/dike-or-strike/thumb-2.webp", proj: "Dike Or Strike" },
-    { kicker: "Educational", title: "Oops! Data Breach — isometric campus hub and puzzle screens", icon: "🛡", c: "c5", k: "oops", img: "assets/projects/oops-data-breach/hero.webp", proj: "Oops! A Data Breach" },
-    { kicker: "VR", title: "Walls of Eden — dystopian narrative UI and moral choice system", icon: "◎", c: "c5", k: "eden", img: "assets/projects/walls-of-eden/thumb-2.webp", proj: "Walls of Eden" },
-    { kicker: "Narrative", title: "Walls of Eden — VR visor interface and corporate branding", icon: "⊕", c: "c7", k: "eden-vr", img: "assets/projects/walls-of-eden/hero.webp", proj: "Walls of Eden" },
-    { kicker: "3D", title: "Folkloric Character — creature with three emotional expressions", icon: "Ø", c: "c4", k: "folk", img: "assets/projects/folkloric-character/hero.webp", proj: "Folkloric Character" },
-    { kicker: "Texturing", title: "Folkloric Character — mask as narrative device, silver burns and engravings", icon: "◷", c: "c8", k: "folk-mask", img: "assets/projects/folkloric-character/hero.webp", proj: "Folkloric Character" }
+    { kicker: "Strategy", title: "Dike Or Strike - board game-inspired UI for democratic gameplay", icon: "⚔", c: "c7", r: "r2", k: "dike", img: "assets/projects/dike-or-strike/hero.webp", proj: "Dike Or Strike" },
+    { kicker: "UI/UX", title: "Dike Or Strike - character selection and menu systems", icon: "◈", c: "c5", k: "dike-ui", img: "assets/projects/dike-or-strike/thumb-2.webp", proj: "Dike Or Strike" },
+    { kicker: "Educational", title: "Oops! Data Breach - isometric campus hub and puzzle screens", icon: "🛡", c: "c5", k: "oops", img: "assets/projects/oops-data-breach/hero.webp", proj: "Oops! A Data Breach" },
+    { kicker: "VR", title: "Walls of Eden - dystopian narrative UI and moral choice system", icon: "◎", c: "c5", k: "eden", img: "assets/projects/walls-of-eden/thumb-2.webp", proj: "Walls of Eden" },
+    { kicker: "Narrative", title: "Walls of Eden - VR visor interface and corporate branding", icon: "⊕", c: "c7", k: "eden-vr", img: "assets/projects/walls-of-eden/hero.webp", proj: "Walls of Eden" },
+    { kicker: "3D", title: "Folkloric Character - creature with three emotional expressions", icon: "Ø", c: "c4", k: "folk", img: "assets/projects/folkloric-character/hero.webp", proj: "Folkloric Character" },
+    { kicker: "Texturing", title: "Folkloric Character - mask as narrative device, silver burns and engravings", icon: "◷", c: "c8", k: "folk-mask", img: "assets/projects/folkloric-character/hero.webp", proj: "Folkloric Character" }
   ];
 
   return (
@@ -250,7 +250,7 @@ window.BentoGallery = function BentoGallery({ goProject }) {
 };
 
 // ============================================
-// MASK SECTION — Folkloric Character Design showcase
+// MASK SECTION - Folkloric Character Design showcase
 // Interactive 3D model with expression switching via morph targets
 // ============================================
 window.MaskSection = function MaskSection() {
@@ -276,7 +276,7 @@ window.MaskSection = function MaskSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Mouse-follow rotation — gentle ±30° horizontal, ±10° vertical
+  // Mouse-follow rotation - gentle ±30° horizontal, ±10° vertical
   useEffect(() => {
     const BASE_THETA = 0;   // center horizontal angle
     const BASE_PHI = 75;    // center vertical angle
@@ -347,12 +347,12 @@ window.MaskSection = function MaskSection() {
           </React.Fragment>
         ))}
 
-        {/* 3D model viewer — replaces static image */}
+        {/* 3D model viewer - replaces static image */}
         <div className="mask-figure-wrap">
           <model-viewer
             ref={viewerRef}
             src="assets/models/character-v3.glb?v=2"
-            alt="Folkloric Character — interactive 3D model"
+            alt="Folkloric Character - interactive 3D model"
             interaction-prompt="none"
             camera-orbit="0deg 75deg 5.5m"
             field-of-view="32deg"
@@ -374,7 +374,7 @@ window.MaskSection = function MaskSection() {
 };
 
 // ============================================
-// ABOUT + CV — home-page section, two columns
+// ABOUT + CV - home-page section, two columns
 // ============================================
 window.HomeAbout = function HomeAbout() {
   return (
@@ -382,11 +382,11 @@ window.HomeAbout = function HomeAbout() {
       <div className="bio">
         <h2>Hey, I'm <em>Presley.</em></h2>
         <p>
-          A <strong>UI/UX &amp; VFX artist</strong> based in Groningen, Netherlands — studying
+          A <strong>UI/UX &amp; VFX artist</strong> based in Groningen, Netherlands - studying
           Creative Media &amp; Game Technologies at Hanze University.
         </p>
         <p>
-          Strong sense of aesthetic. Every project gets its own visual identity —
+          Strong sense of aesthetic. Every project gets its own visual identity -
           no recycled solutions, only designs that <strong>adapt to
           what the project needs</strong>. I work across departments to make sure the
           player experience is as good as it can be.
@@ -418,34 +418,34 @@ window.HomeAbout = function HomeAbout() {
         <div className="cv-preview"
              onClick={() => window.dispatchEvent(new CustomEvent("nav", { detail: "about" }))}>
           <div className="cv-head">
-            <span>CV — 2026</span>
+            <span>CV - 2026</span>
             <span>Groningen / NL</span>
           </div>
           <h3>Presley<br/>Yordanov</h3>
           <div className="cv-role">UI/UX · VFX Artist</div>
           <div className="cv-row">
             <span className="y">2026</span>
-            <span className="t">Groningen Provincial House — <em>Dike Or Strike</em>. UI/UX, Systems Design.</span>
+            <span className="t">Groningen Provincial House - <em>Dike Or Strike</em>. UI/UX, Systems Design.</span>
           </div>
           <div className="cv-row">
             <span className="y">2026</span>
-            <span className="t">University of Groningen — <em>Oops! A Data Breach</em>. Solo UI/UX.</span>
+            <span className="t">University of Groningen - <em>Oops! A Data Breach</em>. Solo UI/UX.</span>
           </div>
           <div className="cv-row">
             <span className="y">2025</span>
-            <span className="t">Walls of Eden — VR game. UI/UX, Narrative, 3D.</span>
+            <span className="t">Walls of Eden - VR game. UI/UX, Narrative, 3D.</span>
           </div>
           <div className="cv-row">
             <span className="y">2025</span>
-            <span className="t">Folkloric Character — solo 3D, Blender &amp; Substance Painter.</span>
+            <span className="t">Folkloric Character - solo 3D, Blender &amp; Substance Painter.</span>
           </div>
           <div className="cv-row">
             <span className="y">2025</span>
-            <span className="t">Unreal Cinematic — Compositing, Visual Storytelling.</span>
+            <span className="t">Unreal Cinematic - Compositing, Visual Storytelling.</span>
           </div>
           <div className="cv-row">
             <span className="y">2024</span>
-            <span className="t">Hanze University — Creative Media &amp; Game Technologies.</span>
+            <span className="t">Hanze University - Creative Media &amp; Game Technologies.</span>
           </div>
           <div className="cv-stamp">P.Y.<br/>26</div>
         </div>
@@ -455,7 +455,7 @@ window.HomeAbout = function HomeAbout() {
 };
 
 // ============================================
-// CONTACT — home-page footer block
+// CONTACT - home-page footer block
 // ============================================
 window.HomeContact = function HomeContact() {
   return (
