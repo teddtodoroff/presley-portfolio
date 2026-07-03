@@ -417,33 +417,8 @@ window.HomeAbout = function HomeAbout() {
         </a>
         <div className="cv-preview"
              onClick={() => window.dispatchEvent(new CustomEvent("nav", { detail: "about" }))}>
-          <div className="cv-head">
-            <span>CV - 2026</span>
-            <span>Groningen / NL</span>
-          </div>
-          <h3>Presley<br/>Yordanov</h3>
-          <div className="cv-role">UI/UX Designer &amp; VFX Artist</div>
-          <div className="cv-row">
-            <span className="y">2026</span>
-            <span className="t"><em>Dike Or Strike</em>. Solo UI/UX · System Design.</span>
-          </div>
-          <div className="cv-row">
-            <span className="y">2026</span>
-            <span className="t"><em>Oops! A Data Breach</em>. Solo UI/UX · System Design.</span>
-          </div>
-          <div className="cv-row">
-            <span className="y">2025</span>
-            <span className="t"><em>Walls of Eden</em>. Solo UI/UX · 3D &amp; Texturing.</span>
-          </div>
-          <div className="cv-row">
-            <span className="y">2025</span>
-            <span className="t"><em>Unreal Cinematic</em>. Compositing · Visual Storytelling.</span>
-          </div>
-          <div className="cv-row">
-            <span className="y">2024</span>
-            <span className="t">Hanze University - Creative Media &amp; Game Technologies.</span>
-          </div>
-          <div className="cv-stamp">P.Y.<br/>26</div>
+          <img src="assets/cv-presley-yordanov.png" alt="Presley Yordanov - CV 2026"
+               style={{ width: "100%", height: "auto", borderRadius: "inherit", display: "block" }} />
         </div>
       </div>
     </section>
