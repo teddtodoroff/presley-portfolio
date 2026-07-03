@@ -14,7 +14,7 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       info2: { lbl: "Client / Genre", v: "Groningen Provincial House · Co-op Strategy", desc: "Group project - board game-inspired interface with Dutch identity." },
       info3: { lbl: "Tools", v: "Figma · Unity · Blender · Jira", desc: "Interfaces readable over 3-meter distances, embedded Dutch visual language." },
       quote: { text: "Transforming democracy into a meaningful, emotionally engaging experience through player agency.", attr: "Project overview" },
-      thumbLabels: ["One-pager overview", "Character selection", "Main menu", "Gameplay tutorial", "Quest screen"],
+      thumbLabels: ["One-pager overview", "Character selection", "Main menu", "Lose screen", "Win screen"],
       thumbCount: 5
     },
     "Oops! A Data Breach": {

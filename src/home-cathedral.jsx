@@ -402,7 +402,7 @@ window.HomeAbout = function HomeAbout() {
           </div>
           <div>
             <dt>Focus</dt>
-            <dd>Game UI/UX · 3D</dd>
+            <dd>Game UI/UX · Visual Storytelling</dd>
           </div>
           <div>
             <dt>Tools</dt>
