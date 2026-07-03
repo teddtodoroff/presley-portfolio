@@ -364,6 +364,73 @@ section { position: relative; }
   transition: transform 0.15s ease-out;
   filter: drop-shadow(0 30px 60px rgba(122, 79, 204, 0.4));
 }
+/* 3D model wrapper — replaces .mask-figure for model-viewer */
+.mask-figure-wrap {
+  width: clamp(320px, 40vw, 560px);
+  height: clamp(400px, 50vh, 640px);
+  position: relative;
+  z-index: 2;
+}
+.mask-figure-wrap model-viewer {
+  filter: drop-shadow(0 30px 80px rgba(122, 79, 204, 0.35));
+}
+/* Expression switcher */
+.mask-expressions {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  background: rgba(10, 6, 18, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(184, 168, 212, 0.15);
+  border-radius: 40px;
+  padding: 6px 12px;
+}
+.mask-expr-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+  margin-right: 8px;
+}
+.mask-expr-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  padding: 6px 14px;
+  color: var(--ink-dim);
+  font-family: var(--sans);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.mask-expr-btn:hover {
+  color: var(--ink);
+  border-color: rgba(184, 168, 212, 0.25);
+}
+.mask-expr-btn.active {
+  color: var(--ink);
+  background: rgba(184, 168, 212, 0.12);
+  border-color: rgba(184, 168, 212, 0.3);
+}
+.mask-expr-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-mute);
+  transition: background 0.25s;
+}
+.mask-expr-btn.active .mask-expr-dot {
+  background: var(--rose);
+}
 .mask-text {
   position: absolute;
   font-family: var(--serif);

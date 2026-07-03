@@ -65,7 +65,8 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       kicker: "Strategy · Groningen Provincial House",
       role: "UI Design · UX Research · Systems Design",
       desc: "A local co-op strategy game transforming democracy into a meaningful, emotionally engaging experience through player agency and community-driven decision making.",
-      bg: "linear-gradient(135deg, #2a4a2a 0%, #1a0e0a 100%)"
+      bg: "linear-gradient(135deg, #2a4a2a 0%, #1a0e0a 100%)",
+      img: "assets/projects/dike-or-strike/hero.webp"
     },
     {
       title: "Oops! A Data Breach",
@@ -73,7 +74,8 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       kicker: "Educational · University of Groningen",
       role: "Solo UI/UX Design · Research",
       desc: "A cybersecurity learning game with stealth education through intuitive interactions and player-centred UX, designed for short 2–5 minute sessions.",
-      bg: "linear-gradient(135deg, #1a2a4a 0%, #0a0a1e 100%)"
+      bg: "linear-gradient(135deg, #1a2a4a 0%, #0a0a1e 100%)",
+      img: "assets/projects/oops-data-breach/hero.webp"
     },
     {
       title: "Walls of Eden",
@@ -81,7 +83,8 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       kicker: "VR Game · Group Project",
       role: "UI/UX Design · Narrative System · 3D & Texturing",
       desc: "A dystopian VR game using interface design as a storytelling medium — reinforcing narrative themes, player morality, and corporate influence through visual language.",
-      bg: "linear-gradient(135deg, #0a2a3a 0%, #040810 100%)"
+      bg: "linear-gradient(135deg, #0a2a3a 0%, #040810 100%)",
+      img: "assets/projects/walls-of-eden/hero.webp"
     },
     {
       title: "Folkloric Character",
@@ -89,7 +92,8 @@ window.CarouselSection = function CarouselSection({ goProject }) {
       kicker: "3D · Solo Project",
       role: "Character Design · Texturing",
       desc: "A narrative-driven creature whose identity is communicated through silhouette, expression, and texturing — designed to feel almost human, but unmistakably wrong.",
-      bg: "linear-gradient(135deg, #3a2a4a 0%, #0e0814 100%)"
+      bg: "linear-gradient(135deg, #3a2a4a 0%, #0e0814 100%)",
+      img: "assets/projects/folkloric-character/hero.webp"
     }
   ];
   const [idx, setIdx] = useState(0);
@@ -151,7 +155,12 @@ window.CarouselSection = function CarouselSection({ goProject }) {
           {slides.map((s, i) => (
             <div key={i}
                  className={"carousel-fw-slide" + (i === idx ? " active" : "") + (i === prevIdx ? " leaving" : "")}
-                 style={{ background: s.bg }}
+                 style={{
+                   background: s.bg,
+                   backgroundImage: s.img ? `url(${s.img})` : undefined,
+                   backgroundSize: "cover",
+                   backgroundPosition: "center"
+                 }}
                  onClick={() => goProject && goProject(s.title)}>
               <div className="carousel-fw-scrim" />
               <div className="carousel-fw-content">
@@ -199,13 +208,13 @@ window.CarouselSection = function CarouselSection({ goProject }) {
 // ============================================
 window.BentoGallery = function BentoGallery({ goProject }) {
   const tiles = [
-    { kicker: "Strategy", title: "Dike Or Strike — board game-inspired UI for democratic gameplay", icon: "⚔", c: "c7", r: "r2", k: "dike" },
-    { kicker: "UI/UX", title: "Dike Or Strike — character selection and menu systems", icon: "◈", c: "c5", k: "dike-ui" },
-    { kicker: "Educational", title: "Oops! Data Breach — isometric campus hub and puzzle screens", icon: "🛡", c: "c5", k: "oops" },
-    { kicker: "VR", title: "Walls of Eden — dystopian narrative UI and moral choice system", icon: "◎", c: "c5", k: "eden" },
-    { kicker: "Narrative", title: "Walls of Eden — VR visor interface and corporate branding", icon: "⊕", c: "c7", k: "eden-vr" },
-    { kicker: "3D", title: "Folkloric Character — creature with three emotional expressions", icon: "Ø", c: "c4", k: "folk" },
-    { kicker: "Texturing", title: "Folkloric Character — mask as narrative device, silver burns and engravings", icon: "◷", c: "c8", k: "folk-mask" }
+    { kicker: "Strategy", title: "Dike Or Strike — board game-inspired UI for democratic gameplay", icon: "⚔", c: "c7", r: "r2", k: "dike", img: "assets/projects/dike-or-strike/hero.webp", proj: "Dike Or Strike" },
+    { kicker: "UI/UX", title: "Dike Or Strike — character selection and menu systems", icon: "◈", c: "c5", k: "dike-ui", img: "assets/projects/dike-or-strike/thumb-2.webp", proj: "Dike Or Strike" },
+    { kicker: "Educational", title: "Oops! Data Breach — isometric campus hub and puzzle screens", icon: "🛡", c: "c5", k: "oops", img: "assets/projects/oops-data-breach/hero.webp", proj: "Oops! A Data Breach" },
+    { kicker: "VR", title: "Walls of Eden — dystopian narrative UI and moral choice system", icon: "◎", c: "c5", k: "eden", img: "assets/projects/walls-of-eden/thumb-2.webp", proj: "Walls of Eden" },
+    { kicker: "Narrative", title: "Walls of Eden — VR visor interface and corporate branding", icon: "⊕", c: "c7", k: "eden-vr", img: "assets/projects/walls-of-eden/hero.webp", proj: "Walls of Eden" },
+    { kicker: "3D", title: "Folkloric Character — creature with three emotional expressions", icon: "Ø", c: "c4", k: "folk", img: "assets/projects/folkloric-character/hero.webp", proj: "Folkloric Character" },
+    { kicker: "Texturing", title: "Folkloric Character — mask as narrative device, silver burns and engravings", icon: "◷", c: "c8", k: "folk-mask", img: "assets/projects/folkloric-character/hero.webp", proj: "Folkloric Character" }
   ];
 
   return (
@@ -219,7 +228,11 @@ window.BentoGallery = function BentoGallery({ goProject }) {
       <div className="bento">
         {tiles.map((t, i) => (
           <Reveal key={t.k} className={"tile " + (t.c || "c4") + " " + (t.r || "")} delay={i * 60}>
-            <div className="ph">{t.kicker}</div>
+            {t.img ? (
+              <img src={t.img} alt={t.title} className="tile-bg" loading="lazy" />
+            ) : (
+              <div className="ph">{t.kicker}</div>
+            )}
             <span className="icon">{t.icon}</span>
             <div className="meta">
               <span className="kicker">{t.kicker}</span>
@@ -227,7 +240,7 @@ window.BentoGallery = function BentoGallery({ goProject }) {
               <span className="arrow">→ view project</span>
             </div>
             <a href="#" className="tile-hit"
-               onClick={(e) => { e.preventDefault(); goProject && goProject(t.title); }}
+               onClick={(e) => { e.preventDefault(); goProject && goProject(t.proj || t.title); }}
                style={{ position: "absolute", inset: 0, zIndex: 3 }} />
           </Reveal>
         ))}
@@ -238,26 +251,48 @@ window.BentoGallery = function BentoGallery({ goProject }) {
 
 // ============================================
 // MASK SECTION — Folkloric Character Design showcase
+// Interactive 3D model with expression switching via morph targets
 // ============================================
 window.MaskSection = function MaskSection() {
-  const maskRef = useRef(null);
   const [phase, setPhase] = useState(0);
+  const [expression, setExpression] = useState("neutral");
   const sectionRef = useRef(null);
+  const viewerRef = useRef(null);
 
-  useEffect(() => {
-    const onMove = (e) => {
-      if (!maskRef.current) return;
-      const rect = maskRef.current.getBoundingClientRect();
-      const cx = rect.left + rect.width / 2;
-      const cy = rect.top + rect.height / 2;
-      const dx = (e.clientX - cx) / window.innerWidth;
-      const dy = (e.clientY - cy) / window.innerHeight;
-      maskRef.current.style.transform = `perspective(1000px) rotateY(${dx * 14}deg) rotateX(${-dy * 10}deg)`;
-    };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+  const expressions = [
+    { key: "neutral", label: "Neutral" },
+    { key: "malice", label: "Malice" },
+    { key: "sensory", label: "Sensory Overload" },
+    { key: "starvation", label: "Starvation" }
+  ];
 
+  // Morph target animation
+  const setMorph = (expr) => {
+    setExpression(expr);
+    const mv = viewerRef.current;
+    if (!mv) return;
+    const targets = { malice: "Malice", sensory: "Sensory Overload", starvation: "Starvation" };
+    // Animate all targets to 0 first, then selected to 1
+    Object.values(targets).forEach(t => {
+      try { mv.setAttribute(`morph-target-${t.replace(/\s/g, "-")}`, "0"); } catch(e) {}
+    });
+    // Use model-viewer's scene graph for morph targets
+    if (mv.model) {
+      const mesh = mv.model.meshes?.find(m => m.name === "mesh.002") || mv.model.meshes?.[2];
+      if (mesh) {
+        // Reset all
+        Object.values(targets).forEach(t => {
+          try { mesh.setMorphTargetWeight(t, 0); } catch(e) {}
+        });
+        // Set selected
+        if (targets[expr]) {
+          try { mesh.setMorphTargetWeight(targets[expr], 1); } catch(e) {}
+        }
+      }
+    }
+  };
+
+  // Scroll-driven text phases
   useEffect(() => {
     const onScroll = () => {
       if (!sectionRef.current) return;
@@ -289,8 +324,47 @@ window.MaskSection = function MaskSection() {
             <div className={"mask-text right" + (phase === i ? " active" : "")}>{p.r}</div>
           </React.Fragment>
         ))}
-        <img ref={maskRef} src="assets/mask-placeholder.svg" className="mask-figure" alt="Folkloric Character Mask" />
-        <div className="mask-caption">Folkloric Character Design · Narrative-driven creature · Blender &amp; Substance Painter</div>
+
+        {/* 3D model viewer — replaces static image */}
+        <div className="mask-figure-wrap">
+          <model-viewer
+            ref={viewerRef}
+            src="assets/models/character-v3.glb"
+            alt="Folkloric Character — interactive 3D model"
+            camera-controls
+            auto-rotate
+            auto-rotate-delay="0"
+            rotation-per-second="12deg"
+            interaction-prompt="none"
+            camera-orbit="0deg 75deg 2.5m"
+            min-camera-orbit="auto auto 1.5m"
+            max-camera-orbit="auto auto 4m"
+            field-of-view="30deg"
+            style={{
+              width: "100%",
+              height: "100%",
+              background: "transparent",
+              "--poster-color": "transparent"
+            }}
+          />
+        </div>
+
+        {/* Expression switcher */}
+        <div className="mask-expressions">
+          <span className="mask-expr-label">Expression</span>
+          {expressions.map(e => (
+            <button
+              key={e.key}
+              className={"mask-expr-btn" + (expression === e.key ? " active" : "")}
+              onClick={() => setMorph(e.key)}
+            >
+              <span className="mask-expr-dot" />
+              {e.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="mask-caption">Folkloric Character Design · Interactive 3D · Blender &amp; Substance Painter</div>
       </div>
     </section>
   );

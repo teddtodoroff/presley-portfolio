@@ -9,34 +9,50 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
   // Project metadata — data-driven per project
   const projectData = {
     "Dike Or Strike": {
+      slug: "dike-or-strike",
       role: { lbl: "Role", v: "UI Designer · UX Researcher · Systems Designer", desc: "Led UI design, conducted 88+ cultural probes, interviews, and playtests." },
       info2: { lbl: "Client / Genre", v: "Groningen Provincial House · Co-op Strategy", desc: "Group project — board game-inspired interface with Dutch identity." },
       info3: { lbl: "Tools", v: "Figma · Unity · Blender · Jira", desc: "Interfaces readable over 3-meter distances, embedded Dutch visual language." },
-      thumbLabels: ["One-pager overview", "Character selection", "Main menu", "Gameplay tutorial", "Quest screen"]
+      thumbLabels: ["One-pager overview", "Character selection", "Main menu", "Gameplay tutorial", "Quest screen"],
+      thumbCount: 5
     },
     "Oops! A Data Breach": {
+      slug: "oops-data-breach",
       role: { lbl: "Role", v: "Solo UI Designer · UX Researcher", desc: "End-to-end UI/UX for an educational cybersecurity game." },
       info2: { lbl: "Client / Genre", v: "University of Groningen · Educational", desc: "Team project — stealth learning through intuitive interactions." },
       info3: { lbl: "Tools", v: "Figma · Unity · Trello · Miro", desc: "Designed for short 2–5 minute play sessions, matching 70% of participants' preferred session length." },
-      thumbLabels: ["Isometric campus hub", "Pipe puzzle", "Word puzzle", "Characters", "Achievements"]
+      thumbLabels: ["Isometric campus hub", "Pipe puzzle", "Word puzzle", "Characters", "Achievements"],
+      thumbCount: 5
     },
     "Walls of Eden": {
+      slug: "walls-of-eden",
       role: { lbl: "Role", v: "UI/UX Designer · Narrative System · 3D & Texturing", desc: "UI as storytelling medium — reinforcing corporate influence through visual language." },
       info2: { lbl: "Genre", v: "VR Game · Dystopian", desc: "Group project — moral choices with consequence-driven interactions." },
       info3: { lbl: "Tools", v: "Figma · Blender · Substance Painter · Trello", desc: "Cohesive visual identity for in-world corporation, integrated branding into gameplay." },
-      thumbLabels: ["Visor interface", "Moral choice UI", "In-game view", "SafeHaven logo", "Commission screen"]
+      thumbLabels: ["Visor interface", "Moral choice UI", "In-game view", "SafeHaven logo", "Commission screen"],
+      thumbCount: 5
     },
     "Folkloric Character": {
+      slug: "folkloric-character",
       role: { lbl: "Role", v: "Character Designer · Texturing", desc: "Solo project — narrative-first character design." },
       info2: { lbl: "Type", v: "Solo · 3D Character", desc: "Every visual decision informed by a complete fictional history." },
       info3: { lbl: "Tools", v: "Blender · Substance Painter", desc: "Three expressions (Malice, Sensory Overload, Starvation) via shape keys." },
-      thumbLabels: ["Wireframe mask", "Expression: Malice", "Expression: Sensory Overload", "Expression: Starvation", "Full character"]
+      thumbLabels: ["Full character"],
+      thumbCount: 1
     }
   };
   const data = projectData[title] || projectData["Dike Or Strike"];
   const meta = { role: data.role, info2: data.info2, info3: data.info3 };
   const [active, setActive] = useState(0);
   const thumbs = data.thumbLabels;
+  const slug = data.slug;
+  const thumbCount = data.thumbCount || thumbs.length;
+  // Build image paths — hero for featured, thumb-N for thumbnails
+  const heroImg = slug ? `assets/projects/${slug}/hero.webp` : null;
+  const thumbImgs = [];
+  for (let i = 1; i <= thumbCount; i++) {
+    thumbImgs.push(`assets/projects/${slug}/thumb-${i}.webp`);
+  }
 
   return (
     <div className="page active">
@@ -72,7 +88,7 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       </section>
 
       <section className="proj-featured">
-        <div className="frame">
+        <div className="frame" style={heroImg ? { backgroundImage: `url(${thumbImgs[active] || heroImg})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
           <div className="quote-overlay">
             <span className="kicker">{title.toUpperCase()}</span>
             <blockquote>
@@ -82,15 +98,18 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
             <footer>— Project overview</footer>
           </div>
         </div>
-        <div className="proj-thumbs">
-          {thumbs.map((t, i) => (
-            <div key={i}
-                 className={"th" + (i === active ? " active" : "")}
-                 onClick={() => setActive(i)}>
-              <div className="ph" />
-            </div>
-          ))}
-        </div>
+        {thumbCount > 0 && (
+          <div className="proj-thumbs">
+            {thumbImgs.map((src, i) => (
+              <div key={i}
+                   className={"th" + (i === active ? " active" : "")}
+                   onClick={() => setActive(i)}>
+                <img src={src} alt={thumbs[i] || `${title} screenshot ${i + 1}`} loading="lazy"
+                     style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: "inherit" }} />
+              </div>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Next project */}
@@ -118,10 +137,10 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
 // ============================================
 window.WorkIndex = function WorkIndex({ goProject }) {
   const projects = [
-    { num: "01", t: "Dike Or Strike", r: "UI/UX · Systems Design", y: "2026", tag: "Strategy", bg: "linear-gradient(135deg, #2a4a2a, #1a0e0a)" },
-    { num: "02", t: "Oops! A Data Breach", r: "Solo UI/UX · Research", y: "2026", tag: "Educational", bg: "linear-gradient(135deg, #1a2a4a, #0a0a1e)" },
-    { num: "03", t: "Walls of Eden", r: "UI/UX · Narrative · 3D", y: "2025", tag: "VR Game", bg: "linear-gradient(135deg, #0a2a3a, #040810)" },
-    { num: "04", t: "Folkloric Character", r: "Character Design · Texturing", y: "2025", tag: "3D Solo", bg: "linear-gradient(135deg, #3a2a4a, #0e0814)" }
+    { num: "01", t: "Dike Or Strike", r: "UI/UX · Systems Design", y: "2026", tag: "Strategy", bg: "linear-gradient(135deg, #2a4a2a, #1a0e0a)", img: "assets/projects/dike-or-strike/hero.webp" },
+    { num: "02", t: "Oops! A Data Breach", r: "Solo UI/UX · Research", y: "2026", tag: "Educational", bg: "linear-gradient(135deg, #1a2a4a, #0a0a1e)", img: "assets/projects/oops-data-breach/hero.webp" },
+    { num: "03", t: "Walls of Eden", r: "UI/UX · Narrative · 3D", y: "2025", tag: "VR Game", bg: "linear-gradient(135deg, #0a2a3a, #040810)", img: "assets/projects/walls-of-eden/hero.webp" },
+    { num: "04", t: "Folkloric Character", r: "Character Design · Texturing", y: "2025", tag: "3D Solo", bg: "linear-gradient(135deg, #3a2a4a, #0e0814)", img: "assets/projects/folkloric-character/hero.webp" }
   ];
   const [hovered, setHovered] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -157,7 +176,10 @@ window.WorkIndex = function WorkIndex({ goProject }) {
           <div className="work-preview-float" style={{
             left: mousePos.x + 20,
             top: mousePos.y - 80,
-            background: projects[hovered].bg
+            background: projects[hovered].bg,
+            backgroundImage: projects[hovered].img ? `url(${projects[hovered].img})` : undefined,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
           }}>
             <span className="work-preview-label">{projects[hovered].t}</span>
           </div>

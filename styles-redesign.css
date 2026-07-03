@@ -390,6 +390,7 @@
   transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .bento .tile img,
+.bento .tile .tile-bg,
 .bento .tile .ph {
   position: absolute;
   inset: 0;
@@ -997,6 +998,10 @@
   .mask-sticky { padding: 0 20px; }
   .mask-text { font-size: clamp(36px, 12vw, 60px); }
   .mask-figure { max-width: 50vw; }
+  .mask-figure-wrap { width: clamp(260px, 70vw, 400px); height: clamp(320px, 50vh, 460px); }
+  .mask-expressions { flex-wrap: wrap; justify-content: center; gap: 4px; padding: 5px 8px; bottom: 30px; }
+  .mask-expr-label { display: none; }
+  .mask-expr-btn { font-size: 11px; padding: 5px 10px; }
 
   /* ABOUT / CV */
   .home-about {
