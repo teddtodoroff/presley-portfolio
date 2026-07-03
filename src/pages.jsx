@@ -13,6 +13,7 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       role: { lbl: "Role", v: "UI Designer · UX Researcher · Systems Designer", desc: "Led UI design, conducted 88+ cultural probes, interviews, and playtests." },
       info2: { lbl: "Client / Genre", v: "Groningen Provincial House · Co-op Strategy", desc: "Group project — board game-inspired interface with Dutch identity." },
       info3: { lbl: "Tools", v: "Figma · Unity · Blender · Jira", desc: "Interfaces readable over 3-meter distances, embedded Dutch visual language." },
+      quote: { text: "Transforming democracy into a meaningful, emotionally engaging experience through player agency.", attr: "Project overview" },
       thumbLabels: ["One-pager overview", "Character selection", "Main menu", "Gameplay tutorial", "Quest screen"],
       thumbCount: 5
     },
@@ -21,6 +22,7 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       role: { lbl: "Role", v: "Solo UI Designer · UX Researcher", desc: "End-to-end UI/UX for an educational cybersecurity game." },
       info2: { lbl: "Client / Genre", v: "University of Groningen · Educational", desc: "Team project — stealth learning through intuitive interactions." },
       info3: { lbl: "Tools", v: "Figma · Unity · Trello · Miro", desc: "Designed for short 2–5 minute play sessions, matching 70% of participants' preferred session length." },
+      quote: { text: "Stealth education through intuitive interactions — making cybersecurity feel natural, not forced.", attr: "Project overview" },
       thumbLabels: ["Isometric campus hub", "Pipe puzzle", "Word puzzle", "Characters", "Achievements"],
       thumbCount: 5
     },
@@ -29,6 +31,7 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       role: { lbl: "Role", v: "UI/UX Designer · Narrative System · 3D & Texturing", desc: "UI as storytelling medium — reinforcing corporate influence through visual language." },
       info2: { lbl: "Genre", v: "VR Game · Dystopian", desc: "Group project — moral choices with consequence-driven interactions." },
       info3: { lbl: "Tools", v: "Figma · Blender · Substance Painter · Trello", desc: "Cohesive visual identity for in-world corporation, integrated branding into gameplay." },
+      quote: { text: "Interface design as a storytelling medium — reinforcing narrative themes through visual language.", attr: "Project overview" },
       thumbLabels: ["Visor interface", "Moral choice UI", "In-game view", "SafeHaven logo", "Commission screen"],
       thumbCount: 5
     },
@@ -37,12 +40,14 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       role: { lbl: "Role", v: "Character Designer · Texturing", desc: "Solo project — narrative-first character design." },
       info2: { lbl: "Type", v: "Solo · 3D Character", desc: "Every visual decision informed by a complete fictional history." },
       info3: { lbl: "Tools", v: "Blender · Substance Painter", desc: "Three expressions (Malice, Sensory Overload, Starvation) via shape keys." },
+      quote: { text: "A creature of intense, destructive hunger — the mask exists as a physical barrier to keep that danger contained. Every detail carries psychological weight.", attr: "Character concept" },
       thumbLabels: ["Character — alternate lighting", "Mask wireframe topology", "Mask textured render"],
       thumbCount: 3
     }
   };
   const data = projectData[title] || projectData["Dike Or Strike"];
   const meta = { role: data.role, info2: data.info2, info3: data.info3 };
+  const quote = data.quote || { text: "Player-centred design that transforms complex systems into intuitive, emotionally engaging experiences.", attr: "Project overview" };
   const [active, setActive] = useState(0);
   const thumbs = data.thumbLabels;
   const slug = data.slug;
@@ -92,10 +97,9 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
           <div className="quote-overlay">
             <span className="kicker">{title.toUpperCase()}</span>
             <blockquote>
-              "Player-centred design that transforms complex systems into intuitive,
-              emotionally engaging experiences."
+              "{quote.text}"
             </blockquote>
-            <footer>— Project overview</footer>
+            <footer>— {quote.attr}</footer>
           </div>
         </div>
         {thumbCount > 0 && (
@@ -276,6 +280,7 @@ window.AboutPage = function AboutPage() {
                 <li>Oops! A Data Breach <span>2026</span></li>
                 <li>Walls of Eden <span>2025</span></li>
                 <li>Folkloric Character <span>2025</span></li>
+                <li>Unreal Cinematic <span>2025</span></li>
               </ul>
             </div>
             <div>

@@ -383,14 +383,13 @@ window.HomeAbout = function HomeAbout() {
         <h2>Hey, I'm <em>Presley.</em></h2>
         <p>
           A <strong>UI/UX &amp; VFX artist</strong> based in Groningen, Netherlands — studying
-          Creative Media &amp; Game Technologies at Hanze University. I design
-          player-centred interfaces, narrative systems, and atmospheric 3D worlds.
+          Creative Media &amp; Game Technologies at Hanze University.
         </p>
         <p>
-          My work sits at the intersection of <strong>behavioral design, emotional
-          design, and atmosphere</strong> — using visual hierarchy, information architecture,
-          and environmental storytelling to create experiences that feel intuitive
-          and immersive.
+          Strong sense of aesthetic. Every project gets its own visual identity —
+          no recycled solutions, only designs that <strong>adapt to
+          what the project needs</strong>. I work across departments to make sure the
+          player experience is as good as it can be.
         </p>
         <dl className="meta">
           <div>
@@ -407,14 +406,13 @@ window.HomeAbout = function HomeAbout() {
           </div>
           <div>
             <dt>Tools</dt>
-            <dd>Figma · Blender · Unity</dd>
+            <dd>Figma · Blender · Unity · Unreal Engine</dd>
           </div>
         </dl>
       </div>
 
       <div className="cv-block">
-        <a href="#" className="cv-download"
-           onClick={(e) => { e.preventDefault(); alert("CV download — coming soon"); }}>
+        <a href="assets/cv-presley-yordanov.pdf" className="cv-download" download>
           Download CV <span>↓</span>
         </a>
         <div className="cv-preview"
@@ -440,6 +438,10 @@ window.HomeAbout = function HomeAbout() {
           <div className="cv-row">
             <span className="y">2025</span>
             <span className="t">Folkloric Character — solo 3D, Blender &amp; Substance Painter.</span>
+          </div>
+          <div className="cv-row">
+            <span className="y">2025</span>
+            <span className="t">Unreal Cinematic — Compositing, Visual Storytelling.</span>
           </div>
           <div className="cv-row">
             <span className="y">2024</span>
