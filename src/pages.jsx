@@ -41,8 +41,8 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       info2: { lbl: "Type", v: "Solo · 3D Character", desc: "Every visual decision informed by a complete fictional history." },
       info3: { lbl: "Tools", v: "Blender · Substance Painter", desc: "Three expressions (Malice, Sensory Overload, Starvation) via shape keys." },
       quote: { text: "A character of intense, destructive hunger, but with a physical barrier to keep that danger contained; psychological weight behind every detail.", attr: "Character concept" },
-      thumbLabels: ["Character - alternate lighting", "Mask wireframe topology", "Mask textured render"],
-      thumbCount: 3
+      thumbLabels: ["Character - alternate lighting", "Mask wireframe topology", "Mask textured render", "Expression - Malice", "Expression - Sensory Overload", "Expression - Starvation"],
+      thumbCount: 6
     }
   };
   const data = projectData[title] || projectData["Dike Or Strike"];
