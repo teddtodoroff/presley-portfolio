@@ -999,7 +999,7 @@
   .bento .tile .meta .title { font-size: 18px; }
 
   /* MASK SECTION */
-  .mask-section { min-height: 200vh; }
+  .mask-section { min-height: 120vh; }
   .mask-sticky { padding: 0 12px; }
   .mask-text { font-size: clamp(24px, 8vw, 44px); }
   .mask-figure { max-width: 50vw; }
