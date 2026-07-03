@@ -37,8 +37,8 @@ window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }
       role: { lbl: "Role", v: "Character Designer · Texturing", desc: "Solo project — narrative-first character design." },
       info2: { lbl: "Type", v: "Solo · 3D Character", desc: "Every visual decision informed by a complete fictional history." },
       info3: { lbl: "Tools", v: "Blender · Substance Painter", desc: "Three expressions (Malice, Sensory Overload, Starvation) via shape keys." },
-      thumbLabels: ["Character render — front", "Character render — alternate lighting"],
-      thumbCount: 2
+      thumbLabels: ["Character render — front", "Character render — alternate lighting", "Mask wireframe topology"],
+      thumbCount: 3
     }
   };
   const data = projectData[title] || projectData["Dike Or Strike"];
