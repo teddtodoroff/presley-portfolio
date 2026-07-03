@@ -917,8 +917,8 @@
   .proj-thumbs { grid-template-columns: repeat(3, 1fr); }
 
   /* MASK — tablet breakpoint */
-  .mask-text { font-size: clamp(48px, 10vw, 100px); }
-  .mask-figure-wrap { width: clamp(300px, 55vw, 500px); height: clamp(420px, 60vh, 640px); }
+  .mask-text { font-size: clamp(36px, 8vw, 80px); }
+  .mask-figure-wrap { width: clamp(260px, 45vw, 400px); height: clamp(380px, 55vh, 560px); }
   .mask-caption { font-size: 9px; letter-spacing: 0.15em; bottom: 24px; }
 }
 
@@ -1001,9 +1001,9 @@
   /* MASK SECTION */
   .mask-section { min-height: 200vh; }
   .mask-sticky { padding: 0 12px; }
-  .mask-text { font-size: clamp(28px, 10vw, 52px); }
+  .mask-text { font-size: clamp(24px, 8vw, 44px); }
   .mask-figure { max-width: 50vw; }
-  .mask-figure-wrap { width: clamp(220px, 70vw, 360px); height: clamp(320px, 55vh, 480px); }
+  .mask-figure-wrap { width: clamp(200px, 60vw, 320px); height: clamp(300px, 50vh, 440px); }
   .mask-expressions { flex-wrap: wrap; justify-content: center; gap: 4px; padding: 5px 8px; bottom: 20px; }
   .mask-expr-label { display: none; }
   .mask-expr-btn { font-size: 10px; padding: 4px 8px; }
