@@ -5,21 +5,38 @@ const { useState, useEffect } = React;
 // PROJECT DETAIL PAGE — per Presley's wireframe
 // Title hero card + ROLE/INFO/INFO meta strip + featured shot with quote + thumb strip
 // ============================================
-window.ProjectDetail = function ProjectDetail({ title = "Golden Hour", back }) {
-  // Project metadata — would be data-driven once Presley sends real materials
-  const meta = {
-    role: { lbl: "Role", v: "Director · Editor · Colorist", desc: "Solo from on-set direction through post." },
-    info2: { lbl: "Year / Length", v: "2025 · 1:32", desc: "Three shoot days, ten days of post." },
-    info3: { lbl: "Tools", v: "Resolve · After Effects · C4D", desc: "CG license plate replacement and ground reflection grading in C4D." }
+window.ProjectDetail = function ProjectDetail({ title = "Dike Or Strike", back }) {
+  // Project metadata — data-driven per project
+  const projectData = {
+    "Dike Or Strike": {
+      role: { lbl: "Role", v: "UI Designer · UX Researcher · Systems Designer", desc: "Led UI design, conducted 88+ cultural probes, interviews, and playtests." },
+      info2: { lbl: "Client / Genre", v: "Groningen Provincial House · Co-op Strategy", desc: "Group project — board game-inspired interface with Dutch identity." },
+      info3: { lbl: "Tools", v: "Figma · Unity · Blender · Jira", desc: "Interfaces readable over 3-meter distances, embedded Dutch visual language." },
+      thumbLabels: ["One-pager overview", "Character selection", "Main menu", "Gameplay tutorial", "Quest screen"]
+    },
+    "Oops! A Data Breach": {
+      role: { lbl: "Role", v: "Solo UI Designer · UX Researcher", desc: "End-to-end UI/UX for an educational cybersecurity game." },
+      info2: { lbl: "Client / Genre", v: "University of Groningen · Educational", desc: "Team project — stealth learning through intuitive interactions." },
+      info3: { lbl: "Tools", v: "Figma · Unity · Trello · Miro", desc: "Designed for short 2–5 minute play sessions, matching 70% of participants' preferred session length." },
+      thumbLabels: ["Isometric campus hub", "Pipe puzzle", "Word puzzle", "Characters", "Achievements"]
+    },
+    "Walls of Eden": {
+      role: { lbl: "Role", v: "UI/UX Designer · Narrative System · 3D & Texturing", desc: "UI as storytelling medium — reinforcing corporate influence through visual language." },
+      info2: { lbl: "Genre", v: "VR Game · Dystopian", desc: "Group project — moral choices with consequence-driven interactions." },
+      info3: { lbl: "Tools", v: "Figma · Blender · Substance Painter · Trello", desc: "Cohesive visual identity for in-world corporation, integrated branding into gameplay." },
+      thumbLabels: ["Visor interface", "Moral choice UI", "In-game view", "SafeHaven logo", "Commission screen"]
+    },
+    "Folkloric Character": {
+      role: { lbl: "Role", v: "Character Designer · Texturing", desc: "Solo project — narrative-first character design." },
+      info2: { lbl: "Type", v: "Solo · 3D Character", desc: "Every visual decision informed by a complete fictional history." },
+      info3: { lbl: "Tools", v: "Blender · Substance Painter", desc: "Three expressions (Malice, Sensory Overload, Starvation) via shape keys." },
+      thumbLabels: ["Wireframe mask", "Expression: Malice", "Expression: Sensory Overload", "Expression: Starvation", "Full character"]
+    }
   };
+  const data = projectData[title] || projectData["Dike Or Strike"];
+  const meta = { role: data.role, info2: data.info2, info3: data.info3 };
   const [active, setActive] = useState(0);
-  const thumbs = [
-    "Hero — sunset wall",
-    "Tracking — A-road",
-    "Detail — wing",
-    "Detail — wheel",
-    "Closing — wide"
-  ];
+  const thumbs = data.thumbLabels;
 
   return (
     <div className="page active">
@@ -30,10 +47,10 @@ window.ProjectDetail = function ProjectDetail({ title = "Golden Hour", back }) {
           <a href="#" onClick={(e) => { e.preventDefault(); back && back(); }}>← Work</a>
         </div>
         <div className="title-card">
-          <div className="num">PROJECT № 01 / GH-2025</div>
+          <div className="num">PROJECT · {title.toUpperCase()}</div>
           <h1>{title}</h1>
         </div>
-        <div className="year">2025</div>
+        <div className="year">2026</div>
       </section>
 
       <section className="proj-meta-strip">
@@ -59,10 +76,10 @@ window.ProjectDetail = function ProjectDetail({ title = "Golden Hour", back }) {
           <div className="quote-overlay">
             <span className="kicker">{title.toUpperCase()}</span>
             <blockquote>
-              "The team's ability to transform ideas into stunning visuals is unmatched on
-              many levels. Every project feels like a work of art with purpose."
+              "Player-centred design that transforms complex systems into intuitive,
+              emotionally engaging experiences."
             </blockquote>
-            <footer>— Liam Carter, Creative Director · LBWK</footer>
+            <footer>— Project overview</footer>
           </div>
         </div>
         <div className="proj-thumbs">
@@ -80,10 +97,10 @@ window.ProjectDetail = function ProjectDetail({ title = "Golden Hour", back }) {
       <section className="container" style={{ padding: "60px 40px 120px", maxWidth: 1480, margin: "0 auto" }}>
         <a href="#" className="proj-card span-12" style={{ display: "block", aspectRatio: "21/9" }}
            onClick={(e) => { e.preventDefault(); back && back(); }}>
-          <div className="placeholder">Next — Mask of Utopia</div>
+          <div className="placeholder">← Back to all projects</div>
           <div className="meta">
-            <span className="title">Next: Mask of Utopia</span>
-            <span className="role">3D · 2024 →</span>
+            <span className="title">View all projects</span>
+            <span className="role">Work Index →</span>
           </div>
         </a>
       </section>
@@ -101,12 +118,10 @@ window.ProjectDetail = function ProjectDetail({ title = "Golden Hour", back }) {
 // ============================================
 window.WorkIndex = function WorkIndex({ goProject }) {
   const projects = [
-    { num: "01", t: "Golden Hour", r: "Color · Edit · Direction", y: "2025", tag: "Motorsport", bg: "linear-gradient(135deg, #c87a4a, #6a2820)" },
-    { num: "02", t: "Mask of Utopia", r: "3D · Cinematic", y: "2024", tag: "Personal", bg: "linear-gradient(135deg, #3a2050, #0a0414)" },
-    { num: "03", t: "Stage Visuals — Rite", r: "Direction · Live", y: "2025", tag: "Music", bg: "linear-gradient(135deg, #5a4080, #1a0e2e)" },
-    { num: "04", t: "Ethereal Designs", r: "Brand · CGI", y: "2024", tag: "Brand", bg: "linear-gradient(135deg, #b8a890, #4a3a2a)" },
-    { num: "05", t: "Chronos 01", r: "Sculpture · R&D", y: "2023", tag: "Personal", bg: "linear-gradient(135deg, #1a1525, #050208)" },
-    { num: "06", t: "Neural Echoes", r: "Generative", y: "2024", tag: "Personal", bg: "linear-gradient(135deg, #2a3a50, #0a1420)" }
+    { num: "01", t: "Dike Or Strike", r: "UI/UX · Systems Design", y: "2026", tag: "Strategy", bg: "linear-gradient(135deg, #2a4a2a, #1a0e0a)" },
+    { num: "02", t: "Oops! A Data Breach", r: "Solo UI/UX · Research", y: "2026", tag: "Educational", bg: "linear-gradient(135deg, #1a2a4a, #0a0a1e)" },
+    { num: "03", t: "Walls of Eden", r: "UI/UX · Narrative · 3D", y: "2025", tag: "VR Game", bg: "linear-gradient(135deg, #0a2a3a, #040810)" },
+    { num: "04", t: "Folkloric Character", r: "Character Design · Texturing", y: "2025", tag: "3D Solo", bg: "linear-gradient(135deg, #3a2a4a, #0e0814)" }
   ];
   const [hovered, setHovered] = useState(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -127,11 +142,11 @@ window.WorkIndex = function WorkIndex({ goProject }) {
         <Reveal>
           <div className="eyebrow" style={{ marginBottom: 24 }}>Work · Index № 001</div>
           <h1 className="serif" style={{ fontSize: "clamp(72px, 11vw, 200px)", lineHeight: 0.92 }}>
-            Things <em>I've</em><br/>made.
+            Selected<br/><em>Work.</em>
           </h1>
           <p className="lede" style={{ marginTop: 30, maxWidth: 600 }}>
-            A working archive — VFX, direction, color and a few personal experiments in
-            sculpture and stage design.
+            Game UI/UX, narrative systems, 3D character design — projects built at the
+            intersection of player experience and visual storytelling.
           </p>
         </Reveal>
       </section>
@@ -193,57 +208,59 @@ window.AboutPage = function AboutPage() {
         <div className="about-portrait" />
         <div className="about-bio">
           <p>
-            I'm a <strong>VFX &amp; Etc artist</strong> based in Groningen, Netherlands —
-            working between music, motorsport and brand. I direct, shoot, edit, color
-            and sometimes sculpt entire worlds in 3D.
+            I'm a <strong>UI/UX &amp; VFX artist</strong> based in Groningen, Netherlands —
+            studying Creative Media &amp; Game Technologies at Hanze University. I design
+            player-centred interfaces, narrative systems, and atmospheric 3D worlds.
           </p>
           <p>
-            My work tends toward the <strong>cinematic and slightly haunted</strong> —
-            big sculptural objects, golden hours, and the kind of lighting that feels
-            like it belongs in a chapel. I like making real things in CG, and CG things
-            that feel real.
+            My work sits at the intersection of <strong>behavioral design, emotional design,
+            and atmosphere</strong> — using visual hierarchy, information architecture, and
+            environmental storytelling to create experiences that feel intuitive and immersive.
           </p>
           <p>
-            Currently taking on select commissions for Q3 and Q4. If your project has
-            an unreasonable visual ambition, we'll probably get along.
+            Open for collaborations and project work. If your project needs thoughtful
+            interaction design or atmospheric visual storytelling, let's talk.
           </p>
 
           <div className="about-list">
             <div>
-              <div className="label">Services</div>
+              <div className="label">Skills</div>
               <ul>
-                <li>Direction <span>01</span></li>
-                <li>VFX &amp; Compositing <span>02</span></li>
-                <li>3D / CGI <span>03</span></li>
-                <li>Color &amp; Edit <span>04</span></li>
-                <li>Stage / Live visuals <span>05</span></li>
+                <li>UI/UX Design <span>01</span></li>
+                <li>UX Research <span>02</span></li>
+                <li>Systems Design <span>03</span></li>
+                <li>3D &amp; Texturing <span>04</span></li>
+                <li>Character Design <span>05</span></li>
               </ul>
             </div>
             <div>
               <div className="label">Tools</div>
               <ul>
-                <li>Resolve <span>·</span></li>
-                <li>After Effects <span>·</span></li>
-                <li>Cinema 4D <span>·</span></li>
-                <li>Houdini <span>·</span></li>
-                <li>Nuke <span>·</span></li>
+                <li>Figma <span>·</span></li>
+                <li>Blender <span>·</span></li>
+                <li>Substance Painter <span>·</span></li>
+                <li>Unity <span>·</span></li>
+                <li>Unreal Engine <span>·</span></li>
+                <li>Illustrator <span>·</span></li>
               </ul>
             </div>
             <div>
-              <div className="label">Selected clients</div>
+              <div className="label">Selected projects</div>
               <ul>
-                <li>LBWK Performance <span>2025</span></li>
-                <li>Ethereal Designs <span>2024</span></li>
-                <li>Datmaxp.jet <span>2024</span></li>
-                <li>Various artists <span>2023+</span></li>
+                <li>Dike Or Strike <span>2026</span></li>
+                <li>Oops! A Data Breach <span>2026</span></li>
+                <li>Walls of Eden <span>2025</span></li>
+                <li>Folkloric Character <span>2025</span></li>
               </ul>
             </div>
             <div>
-              <div className="label">Recognition</div>
+              <div className="label">Design principles</div>
               <ul>
-                <li>Vimeo Staff Pick <span>×2</span></li>
-                <li>Motion Awards Shortlist <span>2025</span></li>
-                <li>Stash Mag feature <span>2024</span></li>
+                <li>Behavioral Design <span>·</span></li>
+                <li>Emotional Design <span>·</span></li>
+                <li>Atmosphere Design <span>·</span></li>
+                <li>Rapid Iteration <span>·</span></li>
+                <li>Information Hierarchy <span>·</span></li>
               </ul>
             </div>
           </div>
@@ -255,7 +272,7 @@ window.AboutPage = function AboutPage() {
         <div style={{ marginTop: 40 }}>
           <span className="contact-pill">
             <span>Send me a message at</span>
-            <span className="email">hey@presleyyordanov.com</span>
+            <span className="email">pp.hey@st.hanze.nl</span>
           </span>
         </div>
       </section>
@@ -279,21 +296,21 @@ window.ContactPage = function ContactPage() {
       <section className="container" style={{ minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "140px 40px 60px" }}>
         <div className="eyebrow" style={{ marginBottom: 24 }}>— Contact</div>
         <h1 className="serif" style={{ fontSize: "clamp(72px, 12vw, 220px)", lineHeight: 0.9 }}>
-          Let's make<br/><em>something</em><br/>rare.
+          Let's create<br/><em>something</em><br/>together.
         </h1>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, marginTop: 80, paddingTop: 60, borderTop: "1px solid var(--line)" }}>
           <div>
             <div className="eyebrow" style={{ marginBottom: 20 }}>Direct</div>
-            <div className="serif" style={{ fontSize: 36 }}>hey@presleyyordanov.com</div>
+            <div className="serif" style={{ fontSize: 36 }}>pp.hey@st.hanze.nl</div>
             <p style={{ color: "var(--ink-dim)", marginTop: 16, maxWidth: 400 }}>
-              Best for project briefs, quotes and longer notes. Replies within 48h.
+              Best for project inquiries, collaborations, and longer notes. Replies within 48h.
             </p>
           </div>
           <div>
             <div className="eyebrow" style={{ marginBottom: 20 }}>Elsewhere</div>
             <ul style={{ listStyle: "none" }}>
-              {["Instagram · @presley.yrd", "Vimeo · presleyyordanov", "Are.na · presley", "LinkedIn · presleyyordanov"].map(s => (
+              {["Instagram · @presley.yrd", "LinkedIn · presleyyordanov"].map(s => (
                 <li key={s} style={{ padding: "14px 0", borderBottom: "1px solid var(--line)", fontFamily: "var(--serif)", fontSize: 22 }}>{s} <span style={{ float: "right", color: "var(--ink-mute)", fontFamily: "var(--mono)", fontSize: 12 }}>↗</span></li>
               ))}
             </ul>
@@ -301,9 +318,9 @@ window.ContactPage = function ContactPage() {
         </div>
 
         <div style={{ marginTop: 80, paddingTop: 40, borderTop: "1px solid var(--line)", display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 20 }}>
-          <div><div className="eyebrow" style={{ marginBottom: 8 }}>Booking</div><div>Q3 — Q4 / 2026</div></div>
+          <div><div className="eyebrow" style={{ marginBottom: 8 }}>Status</div><div>Open for projects</div></div>
           <div><div className="eyebrow" style={{ marginBottom: 8 }}>Located</div><div>Groningen, NL</div></div>
-          <div><div className="eyebrow" style={{ marginBottom: 8 }}>Travel</div><div>Worldwide</div></div>
+          <div><div className="eyebrow" style={{ marginBottom: 8 }}>Study</div><div>Hanze University</div></div>
           <div><div className="eyebrow" style={{ marginBottom: 8 }}>Hours</div><div>CET / 09 — 19</div></div>
         </div>
       </section>

@@ -18,7 +18,7 @@ window.HomeCathedral = function HomeCathedral({ goProject }) {
       <footer className="footer">
         <span>© 2026 Presley Yordanov</span>
         <span>Groningen / Worldwide</span>
-        <span>Last updated · 05.05.26</span>
+        <span>Last updated · 02.07.26</span>
       </footer>
       <ContactPopup />
     </div>
@@ -32,23 +32,23 @@ window.HomeHero = function HomeHero({ goProject }) {
   return (
     <section className="home-hero">
       <div className="eyebrow-row">
-        <span><span className="live-dot" />Groningen, NL — available for select work, Q3 — Q4 / 2026</span>
-        <span className="ix">Index № 001 · VFX &amp; Etc</span>
+        <span><span className="live-dot" />Groningen, NL — open for projects, 2026</span>
+        <span className="ix">Index № 001 · UI/UX · VFX</span>
       </div>
 
       <div className="home-hero-stage">
         <h1 className="title">
-          VFX &amp; Etc<br/><em>Artist.</em>
+          UI/UX · VFX<br/><em>Artist.</em>
         </h1>
         <p className="title-sub">
-          Presley Yordanov — building cinematic, sculptural, slightly haunted
-          imagery for music, motorsport &amp; brands. Groningen &amp; worldwide.
+          Presley Yordanov — designing player-centred interfaces, narrative-driven
+          systems &amp; atmospheric 3D worlds. Groningen &amp; worldwide.
         </p>
       </div>
 
       <div className="hero-foot">
         <span className="hero-foot-l">Scroll to selected work ↓</span>
-        <span className="hero-foot-r">© 2021 — 2026 · Six years &amp; counting</span>
+        <span className="hero-foot-r">Hanze University · Creative Media &amp; Game Technologies</span>
       </div>
     </section>
   );
@@ -60,36 +60,36 @@ window.HomeHero = function HomeHero({ goProject }) {
 window.CarouselSection = function CarouselSection({ goProject }) {
   const slides = [
     {
-      title: "Golden Hour",
-      em: "Hour",
-      kicker: "Motorsport — 2025",
-      role: "Direction · Color · Edit",
-      desc: "A 90-second portrait of a tuned Supra at the last hour of light.",
-      bg: "linear-gradient(135deg, #c87a4a 0%, #6a2820 100%)"
+      title: "Dike Or Strike",
+      em: "Strike",
+      kicker: "Strategy · Groningen Provincial House",
+      role: "UI Design · UX Research · Systems Design",
+      desc: "A local co-op strategy game transforming democracy into a meaningful, emotionally engaging experience through player agency and community-driven decision making.",
+      bg: "linear-gradient(135deg, #2a4a2a 0%, #1a0e0a 100%)"
     },
     {
-      title: "Mask of Utopia",
-      em: "Utopia",
-      kicker: "Personal — 2024",
-      role: "3D · Sculptural · Cinematic",
-      desc: "A long-form 3D study in carved-stone faces and slow camera moves.",
-      bg: "linear-gradient(135deg, #3a2050 0%, #0a0414 100%)"
+      title: "Oops! A Data Breach",
+      em: "Breach",
+      kicker: "Educational · University of Groningen",
+      role: "Solo UI/UX Design · Research",
+      desc: "A cybersecurity learning game with stealth education through intuitive interactions and player-centred UX, designed for short 2–5 minute sessions.",
+      bg: "linear-gradient(135deg, #1a2a4a 0%, #0a0a1e 100%)"
     },
     {
-      title: "Stage Visuals",
-      em: "Visuals",
-      kicker: "Music — 2025",
-      role: "Direction · Live · Compositing",
-      desc: "Twelve cues of live-render visuals for the Rite concert film.",
-      bg: "linear-gradient(135deg, #5a4080 0%, #1a0e2e 100%)"
+      title: "Walls of Eden",
+      em: "Eden",
+      kicker: "VR Game · Group Project",
+      role: "UI/UX Design · Narrative System · 3D & Texturing",
+      desc: "A dystopian VR game using interface design as a storytelling medium — reinforcing narrative themes, player morality, and corporate influence through visual language.",
+      bg: "linear-gradient(135deg, #0a2a3a 0%, #040810 100%)"
     },
     {
-      title: "Ethereal Designs",
-      em: "Designs",
-      kicker: "Brand — 2024",
-      role: "CGI · Brand · Direction",
-      desc: "Identity film and product CG for a boutique jewellery house.",
-      bg: "linear-gradient(135deg, #b8a890 0%, #4a3a2a 100%)"
+      title: "Folkloric Character",
+      em: "Character",
+      kicker: "3D · Solo Project",
+      role: "Character Design · Texturing",
+      desc: "A narrative-driven creature whose identity is communicated through silhouette, expression, and texturing — designed to feel almost human, but unmistakably wrong.",
+      bg: "linear-gradient(135deg, #3a2a4a 0%, #0e0814 100%)"
     }
   ];
   const [idx, setIdx] = useState(0);
@@ -199,13 +199,13 @@ window.CarouselSection = function CarouselSection({ goProject }) {
 // ============================================
 window.BentoGallery = function BentoGallery({ goProject }) {
   const tiles = [
-    { kicker: "Motorsport", title: "Golden Hour — a tuned Supra at the last light of day", icon: "→", c: "c7", r: "r2", k: "golden" },
-    { kicker: "Personal", title: "Mask of Utopia — sculptural 3D study in carved stone", icon: "Ø", c: "c5", k: "mask" },
-    { kicker: "Music", title: "Stage Visuals — twelve live-render cues for Rite", icon: "♪", c: "c5", k: "stage" },
-    { kicker: "Brand", title: "Ethereal Designs — identity film and product CGI", icon: "◈", c: "c5", k: "ethereal" },
-    { kicker: "R&D", title: "Chronos 01 — time-sculpture experiments", icon: "◷", c: "c7", k: "chronos" },
-    { kicker: "Personal", title: "Neural Echoes — generative landscapes", icon: "∿", c: "c4", k: "neural" },
-    { kicker: "Direction", title: "Datmaxp.jet — automotive culture series", icon: "▶", c: "c8", k: "datmaxp" }
+    { kicker: "Strategy", title: "Dike Or Strike — board game-inspired UI for democratic gameplay", icon: "⚔", c: "c7", r: "r2", k: "dike" },
+    { kicker: "UI/UX", title: "Dike Or Strike — character selection and menu systems", icon: "◈", c: "c5", k: "dike-ui" },
+    { kicker: "Educational", title: "Oops! Data Breach — isometric campus hub and puzzle screens", icon: "🛡", c: "c5", k: "oops" },
+    { kicker: "VR", title: "Walls of Eden — dystopian narrative UI and moral choice system", icon: "◎", c: "c5", k: "eden" },
+    { kicker: "Narrative", title: "Walls of Eden — VR visor interface and corporate branding", icon: "⊕", c: "c7", k: "eden-vr" },
+    { kicker: "3D", title: "Folkloric Character — creature with three emotional expressions", icon: "Ø", c: "c4", k: "folk" },
+    { kicker: "Texturing", title: "Folkloric Character — mask as narrative device, silver burns and engravings", icon: "◷", c: "c8", k: "folk-mask" }
   ];
 
   return (
@@ -237,7 +237,7 @@ window.BentoGallery = function BentoGallery({ goProject }) {
 };
 
 // ============================================
-// MASK SECTION — kept from previous, awaits real 3D from Presley
+// MASK SECTION — Folkloric Character Design showcase
 // ============================================
 window.MaskSection = function MaskSection() {
   const maskRef = useRef(null);
@@ -275,9 +275,9 @@ window.MaskSection = function MaskSection() {
   }, []);
 
   const phrases = [
-    { l: "EXPLORE", r: "MASKS" },
-    { l: "WEAR", r: "WORLDS" },
-    { l: "OF", r: "UTOPIA" }
+    { l: "ANCIENT", r: "FOLKLORE" },
+    { l: "CONTAINED", r: "POWER" },
+    { l: "FORGOTTEN", r: "IDENTITY" }
   ];
 
   return (
@@ -289,8 +289,8 @@ window.MaskSection = function MaskSection() {
             <div className={"mask-text right" + (phase === i ? " active" : "")}>{p.r}</div>
           </React.Fragment>
         ))}
-        <img ref={maskRef} src="assets/mask-placeholder.svg" className="mask-figure" alt="Mask" />
-        <div className="mask-caption">3D helmet preview · Move your cursor · placeholder pending Presley's real model</div>
+        <img ref={maskRef} src="assets/mask-placeholder.svg" className="mask-figure" alt="Folkloric Character Mask" />
+        <div className="mask-caption">Folkloric Character Design · Narrative-driven creature · Blender &amp; Substance Painter</div>
       </div>
     </section>
   );
@@ -305,14 +305,15 @@ window.HomeAbout = function HomeAbout() {
       <div className="bio">
         <h2>Hey, I'm <em>Presley.</em></h2>
         <p>
-          A <strong>VFX &amp; Etc artist</strong> based in Groningen, Netherlands — working
-          between music, motorsport and brand. I direct, shoot, edit, color and
-          sometimes sculpt entire worlds in 3D.
+          A <strong>UI/UX &amp; VFX artist</strong> based in Groningen, Netherlands — studying
+          Creative Media &amp; Game Technologies at Hanze University. I design
+          player-centred interfaces, narrative systems, and atmospheric 3D worlds.
         </p>
         <p>
-          The work tends toward the <strong>cinematic and slightly haunted</strong> —
-          big sculptural objects, golden hours, lighting that belongs in a chapel.
-          I like making real things in CG, and CG things that feel real.
+          My work sits at the intersection of <strong>behavioral design, emotional
+          design, and atmosphere</strong> — using visual hierarchy, information architecture,
+          and environmental storytelling to create experiences that feel intuitive
+          and immersive.
         </p>
         <dl className="meta">
           <div>
@@ -320,52 +321,52 @@ window.HomeAbout = function HomeAbout() {
             <dd>Groningen, NL</dd>
           </div>
           <div>
-            <dt>Booking</dt>
-            <dd>Q3 — Q4 / 2026</dd>
+            <dt>Study</dt>
+            <dd>Hanze University</dd>
           </div>
           <div>
-            <dt>Travel</dt>
-            <dd>Worldwide</dd>
+            <dt>Focus</dt>
+            <dd>Game UI/UX · 3D</dd>
           </div>
           <div>
-            <dt>Years</dt>
-            <dd>06</dd>
+            <dt>Tools</dt>
+            <dd>Figma · Blender · Unity</dd>
           </div>
         </dl>
       </div>
 
       <div className="cv-block">
         <a href="#" className="cv-download"
-           onClick={(e) => { e.preventDefault(); alert("CV PDF — pending Presley's file"); }}>
+           onClick={(e) => { e.preventDefault(); alert("CV download — coming soon"); }}>
           Download CV <span>↓</span>
         </a>
         <div className="cv-preview"
              onClick={() => window.dispatchEvent(new CustomEvent("nav", { detail: "about" }))}>
           <div className="cv-head">
             <span>CV — 2026</span>
-            <span>Sofia / BG</span>
+            <span>Groningen / NL</span>
           </div>
           <h3>Presley<br/>Yordanov</h3>
-          <div className="cv-role">VFX &amp; Etc Artist · Director</div>
+          <div className="cv-role">UI/UX · VFX Artist</div>
           <div className="cv-row">
-            <span className="y">2025</span>
-            <span className="t">LBWK Performance — <em>Golden Hour</em>. Direction, color, edit.</span>
+            <span className="y">2026</span>
+            <span className="t">Groningen Provincial House — <em>Dike Or Strike</em>. UI/UX, Systems Design.</span>
+          </div>
+          <div className="cv-row">
+            <span className="y">2026</span>
+            <span className="t">University of Groningen — <em>Oops! A Data Breach</em>. Solo UI/UX.</span>
           </div>
           <div className="cv-row">
             <span className="y">2025</span>
-            <span className="t">Rite (live) — <em>Stage Visuals</em>. Direction, 12 live cues.</span>
+            <span className="t">Walls of Eden — VR game. UI/UX, Narrative, 3D.</span>
+          </div>
+          <div className="cv-row">
+            <span className="y">2025</span>
+            <span className="t">Folkloric Character — solo 3D, Blender &amp; Substance Painter.</span>
           </div>
           <div className="cv-row">
             <span className="y">2024</span>
-            <span className="t">Mask of Utopia — 3D film, personal.</span>
-          </div>
-          <div className="cv-row">
-            <span className="y">2024</span>
-            <span className="t">Ethereal Designs — brand film, CGI.</span>
-          </div>
-          <div className="cv-row">
-            <span className="y">2021</span>
-            <span className="t">Independent practice begins.</span>
+            <span className="t">Hanze University — Creative Media &amp; Game Technologies.</span>
           </div>
           <div className="cv-stamp">P.Y.<br/>26</div>
         </div>
@@ -380,17 +381,17 @@ window.HomeAbout = function HomeAbout() {
 window.HomeContact = function HomeContact() {
   return (
     <section className="home-contact">
-      <h2>Let's build<br/><em>something rare.</em></h2>
+      <h2>Let's create<br/><em>something together.</em></h2>
       <div className="contact-rows">
         <div className="col">
           <div className="lbl">Direct</div>
-          <div className="v">hey@presleyyordanov.com</div>
-          <div className="desc">Best for project briefs, quotes and longer notes. Replies within 48h.</div>
+          <div className="v">pp.hey@st.hanze.nl</div>
+          <div className="desc">Best for project inquiries, collaborations, and longer notes. Replies within 48h.</div>
         </div>
         <div className="col">
           <div className="lbl">Elsewhere</div>
-          <div className="v">@presley.yrd<br/>vimeo.com/presleyyordanov</div>
-          <div className="desc">Daily process and reel updates on Instagram and Vimeo.</div>
+          <div className="v">@presley.yrd</div>
+          <div className="desc">Process updates and work-in-progress on Instagram.</div>
         </div>
       </div>
     </section>

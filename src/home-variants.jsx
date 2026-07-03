@@ -19,8 +19,8 @@ window.HomeEditorial = function HomeEditorial() {
           Presley<br/>Yordanov<sup style={{ fontSize: "0.3em", verticalAlign: "super", marginLeft: 12, color: "var(--violet-300)" }}>©</sup>
         </h1>
         <p className="hero-sub" style={{ marginTop: 30, marginLeft: 0 }}>
-          A VFX &amp; Etc Artist working between cinema, motorsport and stage.
-          Selected work, an index, and a way to write me.
+          A UI/UX &amp; VFX Artist designing player-centred interfaces, narrative
+          systems &amp; atmospheric 3D worlds. Selected work and a way to write me.
         </p>
         <div className="hero-cta" style={{ marginTop: 40 }}>
           <a href="#index" className="btn">Index of work →</a>
@@ -37,11 +37,10 @@ window.HomeEditorial = function HomeEditorial() {
 
         <div style={{ display: "grid", gap: 80, paddingBottom: 100 }}>
           {[
-            { num: "01", title: "Golden Hour", role: "Color · Edit · Direction", year: "2025" },
-            { num: "02", title: "Mask of Utopia", role: "3D · Sculpture · Cinematic", year: "2024" },
-            { num: "03", title: "Stage Visuals", role: "Direction · Live", year: "2025" },
-            { num: "04", title: "Ethereal Designs", role: "Brand · CGI", year: "2024" },
-            { num: "05", title: "Chronos 01", role: "Sculpture · R&D", year: "2023" }
+            { num: "01", title: "Dike Or Strike", role: "UI/UX · Systems Design", year: "2026" },
+            { num: "02", title: "Oops! A Data Breach", role: "Solo UI/UX · Research", year: "2026" },
+            { num: "03", title: "Walls of Eden", role: "UI/UX · Narrative · 3D", year: "2025" },
+            { num: "04", title: "Folkloric Character", role: "Character Design · Texturing", year: "2025" }
           ].map((p, i) => (
             <Reveal key={p.num} delay={i * 60}>
               <div style={{ display: "grid", gridTemplateColumns: "auto 1fr", gap: 40, alignItems: "start" }}>
@@ -70,7 +69,7 @@ window.HomeEditorial = function HomeEditorial() {
         <div style={{ marginTop: 40 }}>
           <span className="contact-pill">
             <span>Direct</span>
-            <span className="email">hey@presleyyordanov.com</span>
+            <span className="email">pp.hey@st.hanze.nl</span>
           </span>
         </div>
       </section>
@@ -118,7 +117,7 @@ window.HomeCyber = function HomeCyber() {
             textAlign: "center",
             lineHeight: 0.85
           }}>
-            VFX<br/>&amp; ETC
+            UI/UX<br/>&amp; VFX
           </h1>
         </div>
         <img
@@ -138,7 +137,7 @@ window.HomeCyber = function HomeCyber() {
           PRESLEY.YORDANOV / SYS.001
         </div>
         <div style={{ position: "absolute", right: 40, bottom: 40, fontFamily: "var(--mono)", fontSize: 11, letterSpacing: ".18em", color: "var(--ink-mute)", textTransform: "uppercase", textAlign: "right" }}>
-          STATUS — AVAILABLE<br/>BOOKING Q3—Q4 / 26
+          STATUS — AVAILABLE<br/>OPEN FOR PROJECTS / 26
         </div>
       </section>
 
@@ -150,12 +149,10 @@ window.HomeCyber = function HomeCyber() {
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 2, background: "var(--line)", border: "1px solid var(--line)", marginBottom: 80 }}>
           {[
-            ["Golden Hour", "Color/Edit", "2025", "07 shots"],
-            ["Mask of Utopia", "3D", "2024", "01 hero"],
-            ["Stage Visuals", "Live", "2025", "12 cues"],
-            ["Ethereal Designs", "Brand", "2024", "05 boards"],
-            ["Chronos 01", "R&D", "2023", "03 builds"],
-            ["Neural Echoes", "Generative", "2024", "∞ frames"]
+            ["Dike Or Strike", "UI/UX", "2026", "Strategy"],
+            ["Oops! A Data Breach", "UI/UX", "2026", "Educational"],
+            ["Walls of Eden", "VR/3D", "2025", "Narrative"],
+            ["Folkloric Character", "3D", "2025", "Character"]
           ].map(([t, r, y, m], i) => (
             <Reveal key={i} delay={i * 50}>
               <div className="proj-card" style={{ borderRadius: 0, border: "none", aspectRatio: "1 / 1" }}>
@@ -178,13 +175,13 @@ window.HomeCyber = function HomeCyber() {
         <div style={{ marginTop: 40 }}>
           <span className="contact-pill">
             <span>Channel open at</span>
-            <span className="email">hey@presleyyordanov.com</span>
+            <span className="email">pp.hey@st.hanze.nl</span>
           </span>
         </div>
       </section>
 
       <footer className="footer">
-        <span>© 2026 / P.Y.SYS</span><span>build 26.05.05</span><span>Sofia ↔ Worldwide</span>
+        <span>© 2026 / P.Y.SYS</span><span>build 26.07.02</span><span>Groningen ↔ Worldwide</span>
       </footer>
       <ContactPopup />
     </div>

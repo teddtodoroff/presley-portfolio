@@ -48,7 +48,7 @@ function App() {
   } else if (page === "contact") {
     content = <ContactPage />;
   } else if (page === "project") {
-    content = <ProjectDetail title={project || "Golden Hour"} back={() => setPage("work")} />;
+    content = <ProjectDetail title={project || "Dike Or Strike"} back={() => setPage("work")} />;
   }
 
   return (

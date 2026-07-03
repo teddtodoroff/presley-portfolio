@@ -52,7 +52,7 @@ window.CathedralBg = function CathedralBg({ intensity = 1 }) {
 };
 
 // Contact pop-up that rises after user has scrolled a bit
-window.ContactPopup = function ContactPopup({ email = "hey@presleyyordanov.com" }) {
+window.ContactPopup = function ContactPopup({ email = "pp.hey@st.hanze.nl" }) {
   const [show, setShow] = useState(false);
   const [dismissed, setDismissed] = useState(false);
   useEffect(() => {
